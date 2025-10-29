@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride 4 a Woman - Empowering Women in Bwindi, Uganda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d5016;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #7fb800;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #7fb800;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .donate-btn {
+            border: 2px solid #7fb800;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #7fb800;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            background-color: #6a9d00;
+            border-color: #6a9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            z-index: 2;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide:nth-child(1) {
+            background-image: url('imgs/woman.jpg');
+        }
+
+        .hero-slide:nth-child(2) {
+            background-image: url('imgs/film+image.webp');
+        }
+
+        .hero-slide:nth-child(3) {
+            background-image: url('imgs/DSC_0549.webp');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.2;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 span {
+            color: #ffeb3b;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
+            padding: 80px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-left h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #2d5016;
+            line-height: 1.5;
+        }
+
+        .about-highlight {
+            color: #7fb800;
+            font-weight: 800;
+        }
+
+        .about-left p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        .about-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .film-section {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            border-left: 5px solid #7fb800;
+            width: 100%;
+        }
+
+        .film-section h3 {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #2d5016;
+            line-height: 1.6;
+        }
+
+        .film-section a {
+            color: #7fb800;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid #7fb800;
+            transition: all 0.3s;
+        }
+
+        .film-section a:hover {
+            color: #6a9d00;
+            border-bottom-color: #6a9d00;
+        }
+
+        .film-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 20px auto 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .film-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Founder Section */
+        .founder-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .founder-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .founder-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .founder-text h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #2d5016;
+        }
+
+        .founder-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #7fb800;
+        }
+
+        .founder-text p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 60px;
+            background: linear-gradient(to bottom, #fff 0%, #f9f9f9 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #2d5016;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 20px;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 35px;
+            margin-bottom: 70px;
+        }
+
+        .project-card {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(127, 184, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-card-content {
+            padding: 25px;
+        }
+
+        .project-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d5016;
+        }
+
+        .project-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .projects-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 35px;
+            margin-bottom: 80px;
+        }
+
+        .primary-school {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 60px;
+            background: linear-gradient(135deg, #7fb800, #6a9d00);
+            border-radius: 20px;
+            color: white;
+            position: relative;
+        }
+
+        .primary-school h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .school-slider {
+            position: relative;
+            width: 700px;
+            height: 450px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+        }
+
+        .school-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .school-slide.active {
+            opacity: 1;
+        }
+
+        .school-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #2d5016;
+            border: none;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        .read-more-btn {
+            margin-top: 30px;
+            padding: 18px 50px;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            border: 3px solid #ffeb3b;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background-color: transparent;
+            color: #ffeb3b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 235, 59, 0.3);
+        }
+
+        /* Activities Section */
+        .activities {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #fff8e1 0%, #f5f0e8 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .activity-card {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(127, 184, 0, 0.2);
+        }
+
+        .activity-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            padding: 25px;
+            color: #2d5016;
+        }
+
+        .activities-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        /* Accommodation Section */
+        .accommodation {
+            padding: 100px 60px;
+            background: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .accommodation-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .accommodation-title h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #2d5016;
+        }
+
+        .accommodation-title p {
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .accommodation-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .accommodation-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .accommodation-text h3 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #2d5016;
+        }
+
+        .accommodation-text p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        .find-out-btn {
+            display: inline-block;
+            border: 3px solid #7fb800;
+            padding: 18px 45px;
+            background-color: #7fb800;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            border-radius: 30px;
+        }
+
+        .find-out-btn:hover {
+            background-color: transparent;
+            color: #7fb800;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(127, 184, 0, 0.3);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
+            text-align: center;
+        }
+
+        .gallery-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+            perspective: 1000px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #a8a8a8, #c0c0c0);
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .gallery-img:hover {
+            transform: rotateY(180deg);
+        }
+
+        /* Newsletter & Footer */
+        .newsletter {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #2d5016, #4a7022);
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .newsletter p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .newsletter-form input {
+            padding: 16px 25px;
+            border: 2px solid #7fb800;
+            border-radius: 30px;
+            width: 350px;
+            font-size: 15px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: #ffeb3b;
+            box-shadow: 0 0 15px rgba(255, 235, 59, 0.3);
+        }
+
+        .newsletter-form button {
+            padding: 16px 40px;
+            border: 2px solid #ffeb3b;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border-radius: 30px;
+        }
+
+        .newsletter-form button:hover {
+            background-color: transparent;
+            color: #ffeb3b;
+            transform: translateY(-2px);
+        }
+
+        .newsletter-privacy {
+            font-size: 13px;
+            color: #e0e0e0;
+        }
+
+        .newsletter-privacy a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .social-qr {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background-color: #7fb800;
+            border: 2px solid #7fb800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .social-icons a svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .social-icons a:hover {
+            background-color: transparent;
+            border-color: #ffeb3b;
+            color: #ffeb3b;
+            transform: translateY(-5px);
+        }
+
+        .social-icons a:hover svg {
+            fill: #ffeb3b;
+        }
+
+        .footer {
+            background-color: #1a2f0d;
+            padding: 40px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+
+        .footer a {
+            color: #7fb800;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #ffeb3b;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .accommodation-content, .founder-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            header {
+                padding: 15px 30px;
+            }
+
+            .school-slider {
+                width: 90%;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2, .gallery-images {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .school-slider {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <nav>
+            <a href="#about">ABOUT US</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#activities">ACTIVITIES</a>
+            <a href="#stay">STAY WITH US</a>
+            <a href="#shop">THE SHOP</a>
+            <a href="#collaborate">COLLABORATE</a>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slide"></div>
+        <div class="hero-slide"></div>
+        <div class="hero-slide"></div>
+        <div class="hero-content">
+            <h1>Empowering women<br><span>in Bwindi, Uganda</span></h1>
+            <p class="hero-subtitle">Building brighter futures together</p>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder-section">
+        <div class="founder-content">
+            <img class="founder-image" src="imgs/woman.jpg" alt="Founder">
+            
+            <div class="founder-text">
+                <h2>Our Founder's Story</h2>
+                <h3>Evelyne And Denis </h3>
+                <p>Details soon</p>
+                <p>deatils soon</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias distinctio illum cumque! Ea, doloremque soluta consequuntur minima accusantium totam ducimus explicabo, quam iste veritatis porro quos, ipsam sunt officia enim..</p>
+                <p>deatils soon.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+      <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-left">
+                <h2><span class="about-highlight">Ride 4 a Woman</span> is a Ugandan non-governmental organization dedicated to supporting women facing the challenges of poverty, HIV, domestic violence, single motherhood, widowhood and who never had the opportunity to attend school.</h2>
+                <p>Through a variety of impactful projects, Ride 4 a Woman empowers women socially and economically, and ignites positive change within the community of Bwindi, in south-western Uganda. Every initiative is a step forward to build brighter futures and fostering resilience.</p>
+            </div>
+            <div class="about-right">
+                <div class="film-section">
+                    <h3><strong>NEW!!!</strong> Watch the new <a href="#">film of Ride 4 a Woman</a> to get the best overview of the organization.</h3>
+                    <img class="film-image" src="imgs/film+image.webp" alt="Ride 4 a Woman Team">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Projects Section -->
+   <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="section-title">
+            <h2>Our projects</h2>
+            <p>to empower women in Bwindi</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <img class="project-image" src="imgs/woman.jpg" alt="Employing women">
+                <div class="project-card-content">
+                    <h3>Employing women</h3>
+                    <p>60 women come every day to work and find a place of safety and support.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img class="project-image" src="imgs/woman.jpg" alt="Microfinance">
+                <div class="project-card-content">
+                    <h3>Microfinance</h3>
+                    <p>Microloans to support women in their business and personal projects.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img class="project-image" src="imgs/sponsor.webp" alt="Children sponsorship">
+                <div class="project-card-content">
+                    <h3>Children sponsorship</h3>
+                    <p>Education for children from families that cannot afford school fees.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img class="project-image" src="imgs/water.webp" alt="Safe water">
+                <div class="project-card-content">
+                    <h3>Safe water</h3>
+                    <p>We offer safe drinking water to anyone from the community.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-grid-2">
+            <div class="project-card">
+                <img class="project-image" src="imgs/solar.webp" alt="Light a home">
+                <div class="project-card-content">
+                    <h3>Light a home</h3>
+                    <p>Providing and installing solar panels in houses without electricity.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img class="project-image" src="imgs/agri.webp" alt="Agriculture">
+                <div class="project-card-content">
+                    <h3>Agriculture</h3>
+                    <p>Seeds, tools and training to support women with their crops at home.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img class="project-image" src="imgs/goat.webp" alt="Goats program">
+                <div class="project-card-content">
+                    <h3>Goats program</h3>
+                    <p>Emergency funds and economic savings to the families in the form of goats.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img class="project-image" src="imgs/build.webp" alt="Building a home">
+                <div class="project-card-content">
+                    <h3>Building a home</h3>
+                    <p>Constructing and repairing houses for those who cannot afford it by themselves.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="primary-school">
+            <h3>Find out more about our new PRIMARY SCHOOL project</h3>
+            
+            <div class="school-slider">
+                <div class="school-slide">
+                    <img src="imgs/school.webp" alt="Primary School Building 1">
+                </div>
+                <div class="school-slide">
+                    <img src="imgs/DSC_0549.webp" alt="Primary School Building 2">
+                </div>
+                <div class="school-slide">
+                    <img src="imgs/woman.jpg" alt="Primary School Building 3">
+                </div>
+                <button class="slider-btn prev-btn" onclick="changeSchoolSlide(-1)">&#10094;</button>
+                <button class="slider-btn next-btn" onclick="changeSchoolSlide(1)">&#10095;</button>
+            </div>
+            
+            <button class="read-more-btn">READ MORE</button>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities" id="activities">
+        <div class="section-title">
+            <h2>Activities</h2>
+            <p>come and experience real Uganda with us</p>
+        </div>
+
+        <div class="activities-grid">
+            <div class="activity-card">
+                <img class="activity-image" src="imgs/trad.webp" alt="Traditional cooking" style="object-fit: cover; height: 280px;">
+                <h3>Traditional cooking</h3>
+            </div>
+
+            <div class="activity-card">
+                <img class="activity-image" src="imgs/basket.webp" alt="Basket weaving" style="object-fit: cover; height: 280px;">
+                <h3>Basket weaving</h3>
+            </div>
+
+            <div class="activity-card">
+                <img class="activity-image" src="imgs/pedal.webp" alt="Pedal sewing" style="object-fit: cover; height: 280px;">
+                <h3>Pedal sewing</h3>
+            </div>
+        </div>
+
+        <div class="activities-grid-2">
+            <div class="activity-card">
+                <img class="activity-image" src="imgs/bike.webp" alt="Community tours" style="object-fit: cover; height: 280px;">
+                <h3>Community tours</h3>
+            </div>
+
+            <div class="activity-card">
+                <img class="activity-image" src="imgs/dance.webp" alt="Cultural experiences" style="object-fit: cover; height: 280px;">
+                <h3>Cultural experiences</h3>
+            </div>
+
+            <div class="activity-card">
+                <img class="activity-image" src="imgs/visit.webp" alt="Craft workshops" style="object-fit: cover; height: 280px;">
+                <h3>Visiting a woman's home</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Section -->
+    <section class="accommodation" id="stay">
+        <div class="accommodation-title">
+            <h2>Accommodation</h2>
+            <p>next to Bwindi Impenetrable Forest National Park</p>
+        </div>
+
+        <div class="accommodation-content">
+            <img class="accommodation-image" src="imgs/DSC_0549.webp" alt="Guesthouse accommodation">
+
+            <div class="accommodation-text">
+                <h3>Stay with us</h3>
+                <p>Our guesthouse is on the doorstep of Bwindi Impenetrable Forest, home to Uganda's mountain gorillas.</p>
+                <p>Come, stay with us and feel at home.</p>
+                <button class="find-out-btn">FIND OUT MORE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-images">
+            <img class="gallery-img" src="imgs/dance.webp" alt="Community gathering">
+            <img class="gallery-img" src="imgs/crafts.jpg" alt="Women empowerment">
+            <img class="gallery-img" src="imgs/foto1.webp" alt="Bwindi community">
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <p style="font-size: 13px; margin-top: -15px;">We respect your <a href="#" style="text-decoration: underline;">privacy</a></p>
+
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">SIGN UP</button>
+        </form>
+
+        <div class="social-qr">
+            <div class="social-icons">
+                <a href="#" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="#" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" fill="#fff" stroke="#7fb800" stroke-width="2" rx="5"/>
+                <text x="50" y="50" text-anchor="middle" dy=".3em" fill="#2d5016" font-size="12" font-weight="600">QR Code</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        slides[currentSlide].classList.add('active');
+        
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+
+        // School slider functionality
+        let currentSchoolSlide = 0;
+        const schoolSlides = document.querySelectorAll('.school-slide');
+        
+        function showSchoolSlide(n) {
+            schoolSlides.forEach(slide => slide.classList.remove('active'));
+            currentSchoolSlide = (n + schoolSlides.length) % schoolSlides.length;
+            schoolSlides[currentSchoolSlide].classList.add('active');
+        }
+        
+        function changeSchoolSlide(direction) {
+            showSchoolSlide(currentSchoolSlide + direction);
+        }
+        
+        // Initialize first school slide
+        if (schoolSlides.length > 0) {
+            schoolSlides[0].classList.add('active');
+            
+            // Auto-advance school slides every 4 seconds
+            setInterval(() => {
+                changeSchoolSlide(1);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
