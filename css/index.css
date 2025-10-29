@@ -154,15 +154,15 @@
         }
 
         .hero-slide:nth-child(1) {
-            background-image: url('imgs/woman.jpg');
+            background-image: url('../imgs/woman.jpg');
         }
 
         .hero-slide:nth-child(2) {
-            background-image: url('imgs/film+image.webp');
+            background-image: url('../imgs/film+image.webp');
         }
 
         .hero-slide:nth-child(3) {
-            background-image: url('imgs/DSC_0549.webp');
+            background-image: url('../imgs/DSC_0549.webp');
         }
 
         .hero-content {
@@ -1286,4 +1286,57 @@
             .school-slider {
                 height: 200px;
             }
+        }
+
+          /* Dropdown Navigation Styles */
+        header nav {
+            position: relative;
+        }
+        
+        .nav-item {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .nav-item > a {
+            cursor: pointer;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            padding: 10px 0;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2d5016;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f0f7e6;
+            color: #7fb800;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+        
+        /* Arrow indicator for dropdown items - REMOVED */
+        
+        /* Make sure header nav items are inline */
+        header nav .nav-item {
+            vertical-align: top;
         }
