@@ -6,7 +6,7 @@
     <title>Ride 4 a Woman - Empowering Women in Bwindi, Uganda</title>
     <link rel="stylesheet" href="css/index.css">
     <style>
-        {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -67,19 +67,45 @@
             color: #7fb800;
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: #7fb800;
-            transition: width 0.3s;
+        .nav-item {
+            position: relative;
+            display: inline-block;
         }
 
-        nav a:hover::after {
-            width: 100%;
+        .nav-item > a {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            padding: 10px 0;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2d5016;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f7e6;
+            color: #7fb800;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
         }
 
         .donate-btn {
@@ -128,23 +154,6 @@
             z-index: 1;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.03) 10px,
-                rgba(255, 255, 255, 0.03) 20px
-            );
-            z-index: 2;
-        }
-
         .hero-slide {
             position: absolute;
             top: 0;
@@ -162,15 +171,15 @@
         }
 
         .hero-slide:nth-child(1) {
-            background-image: url('imgs/woman.jpg');
+            background-image: url(imgs/dance.webp);
         }
 
         .hero-slide:nth-child(2) {
-            background-image: url('imgs/film+image.webp');
+            background-image: url(imgs/DSC_0549.webp);
         }
 
         .hero-slide:nth-child(3) {
-            background-image: url('imgs/DSC_0549.webp');
+            background-image: url(imgs/film+image.webp);
         }
 
         .hero-content {
@@ -209,6 +218,271 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Our Story Section */
+        .our-story {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-text h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #2d5016;
+        }
+
+        .story-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #7fb800;
+        }
+
+        .story-text p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+       .story-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Meet Our Team Section */
+        .meet-team {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #2d5016;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 20px;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(127, 184, 0, 0.2);
+        }
+
+       .team-photo {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-info h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2d5016;
+        }
+
+        .team-info .role {
+            font-size: 16px;
+            color: #7fb800;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .team-info p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Inspiring Stories Section */
+        .inspiring-stories {
+            padding: 100px 60px;
+            background: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+
+        .story-card {
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #7fb800;
+            transition: all 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(127, 184, 0, 0.2);
+        }
+
+        .story-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d5016;
+        }
+
+        .story-card .quote {
+            font-style: italic;
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #7fb800;
+        }
+
+        .story-card p {
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        /* Sustainability Section */
+        .sustainability {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #2d5016, #4a7022);
+            color: white;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sustainability .section-title h2 {
+            color: white;
+        }
+
+        .sustainability-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .sustainability-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .sustainability-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .sustainability-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffeb3b;
+        }
+
+        .sustainability-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .sustainability-card ul {
+            margin-top: 15px;
+            margin-left: 20px;
+        }
+
+        .sustainability-card li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #e0e0e0;
         }
 
         /* About Section */
@@ -276,65 +550,14 @@
             transition: all 0.3s;
         }
 
-        .film-section a:hover {
-            color: #6a9d00;
-            border-bottom-color: #6a9d00;
-        }
-
         .film-image {
             width: 100%;
             max-width: 400px;
-            height: auto;
+            height: 250px;
             margin: 20px auto 0;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-
-        .film-image:hover {
-            transform: scale(1.05);
-        }
-
-        /* Founder Section */
-        .founder-section {
-            padding: 100px 60px;
-            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .founder-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .founder-image {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .founder-text h2 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: #2d5016;
-        }
-
-        .founder-text h3 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #7fb800;
-        }
-
-        .founder-text p {
-            font-size: 18px;
-            line-height: 1.9;
-            margin-bottom: 20px;
-            color: #4a4a4a;
+            background: url(imgs/film+image.webp);
         }
 
         /* Projects Section */
@@ -343,39 +566,6 @@
             background: linear-gradient(to bottom, #fff 0%, #f9f9f9 100%);
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-title h2 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: #2d5016;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #7fb800, #ffeb3b);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            font-size: 20px;
-            color: #666;
-            font-style: italic;
-            margin-top: 20px;
         }
 
         .projects-grid {
@@ -402,12 +592,8 @@
         .project-image {
             width: 100%;
             height: 250px;
-            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: transform 0.3s;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.1);
         }
 
         .project-card-content {
@@ -427,266 +613,7 @@
             line-height: 1.7;
         }
 
-        .projects-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 35px;
-            margin-bottom: 80px;
-        }
-
-        .primary-school {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 60px;
-            background: linear-gradient(135deg, #7fb800, #6a9d00);
-            border-radius: 20px;
-            color: white;
-            position: relative;
-        }
-
-        .primary-school h3 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .school-slider {
-            position: relative;
-            width: 700px;
-            height: 450px;
-            margin: 40px auto;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-        }
-
-        .school-slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .school-slide.active {
-            opacity: 1;
-        }
-
-        .school-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #2d5016;
-            border: none;
-            font-size: 24px;
-            padding: 15px 20px;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .slider-btn:hover {
-            background-color: rgba(255, 255, 255, 1);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .prev-btn {
-            left: 20px;
-        }
-
-        .next-btn {
-            right: 20px;
-        }
-
-        .read-more-btn {
-            margin-top: 30px;
-            padding: 18px 50px;
-            background-color: #ffeb3b;
-            color: #2d5016;
-            border: 3px solid #ffeb3b;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .read-more-btn:hover {
-            background-color: transparent;
-            color: #ffeb3b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 235, 59, 0.3);
-        }
-
-        /* Activities Section */
-        .activities {
-            padding: 100px 60px;
-            background: linear-gradient(135deg, #fff8e1 0%, #f5f0e8 100%);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .activity-card {
-            text-align: center;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .activity-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(127, 184, 0, 0.2);
-        }
-
-        .activity-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .activity-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            padding: 25px;
-            color: #2d5016;
-        }
-
-        .activities-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        /* Accommodation Section */
-        .accommodation {
-            padding: 100px 60px;
-            background: white;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .accommodation-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .accommodation-title h2 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            color: #2d5016;
-        }
-
-        .accommodation-title p {
-            font-size: 18px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .accommodation-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .accommodation-image {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .accommodation-text h3 {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: #2d5016;
-        }
-
-        .accommodation-text p {
-            font-size: 18px;
-            line-height: 1.9;
-            margin-bottom: 20px;
-            color: #4a4a4a;
-        }
-
-        .find-out-btn {
-            display: inline-block;
-            border: 3px solid #7fb800;
-            padding: 18px 45px;
-            background-color: #7fb800;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 30px;
-            border-radius: 30px;
-        }
-
-        .find-out-btn:hover {
-            background-color: transparent;
-            color: #7fb800;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(127, 184, 0, 0.3);
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            padding: 80px 60px;
-            background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
-            text-align: center;
-        }
-
-        .gallery-images {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-            perspective: 1000px;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #a8a8a8, #c0c0c0);
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-
-        .gallery-img:hover {
-            transform: rotateY(180deg);
-        }
-
-        /* Newsletter & Footer */
+        /* Newsletter Section */
         .newsletter {
             padding: 80px 60px;
             background: linear-gradient(135deg, #2d5016, #4a7022);
@@ -748,17 +675,6 @@
             transform: translateY(-2px);
         }
 
-        .newsletter-privacy {
-            font-size: 13px;
-            color: #e0e0e0;
-        }
-
-        .newsletter-privacy a {
-            color: #ffeb3b;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
         .social-qr {
             display: flex;
             justify-content: center;
@@ -783,8 +699,6 @@
             justify-content: center;
             text-decoration: none;
             color: white;
-            font-weight: 700;
-            font-size: 20px;
             transition: all 0.3s;
         }
 
@@ -797,7 +711,6 @@
         .social-icons a:hover {
             background-color: transparent;
             border-color: #ffeb3b;
-            color: #ffeb3b;
             transform: translateY(-5px);
         }
 
@@ -805,6 +718,7 @@
             fill: #ffeb3b;
         }
 
+        /* Footer */
         .footer {
             background-color: #1a2f0d;
             padding: 40px 60px;
@@ -824,36 +738,28 @@
             color: #ffeb3b;
         }
 
+        /* Responsive Design */
         @media (max-width: 1024px) {
-            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .accommodation-content, .founder-content {
+            .story-content, .about-content {
                 grid-template-columns: 1fr;
             }
 
-            nav {
-                gap: 20px;
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .hero h1 {
-                font-size: 42px;
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            header {
-                padding: 15px 30px;
-            }
-
-            .school-slider {
-                width: 90%;
-                height: 350px;
+            .stories-grid, .sustainability-content {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2, .gallery-images {
-                grid-template-columns: 1fr;
+            header {
+                padding: 15px 30px;
             }
 
             nav {
@@ -862,7 +768,11 @@
             }
 
             .hero h1 {
-                font-size: 32px;
+                font-size: 36px;
+            }
+
+            .team-grid, .projects-grid {
+                grid-template-columns: 1fr;
             }
 
             .newsletter-form {
@@ -875,424 +785,8 @@
                 max-width: 350px;
             }
 
-            .school-slider {
-                width: 100%;
-                height: 300px;
-            }
-
-        }
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .about, .projects, .activities, .founder-section, .accommodation {
-                padding: 60px 40px;
-            }
-
-            .about-content, .founder-content {
-                gap: 50px;
-            }
-
-            .section-title h2, .accommodation-title h2, .founder-text h2 {
-                font-size: 40px;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            header {
-                padding: 15px 30px;
-            }
-
-            nav {
-                gap: 15px;
-            }
-
-            nav a {
-                font-size: 13px;
-            }
-
-            .donate-btn {
-                padding: 10px 24px;
-                font-size: 13px;
-            }
-
-            .hero {
-                height: 500px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero-subtitle {
-                font-size: 18px;
-            }
-
-            .about-content, .founder-content, .accommodation-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-
-            .gallery-images {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .school-slider {
-                width: 90%;
-                height: 350px;
-            }
-
-            .about, .projects, .activities, .founder-section, .accommodation, .newsletter {
-                padding: 60px 30px;
-            }
-
-            .section-title h2, .accommodation-title h2 {
-                font-size: 38px;
-            }
-
-            .founder-text h2 {
-                font-size: 36px;
-            }
-
-            .accommodation-text h3 {
-                font-size: 34px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .logo {
-                font-size: 16px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 280px;
-                height: calc(100vh - 70px);
-                background-color: #fff;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                padding: 30px 20px;
-                gap: 20px;
-                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-                transition: left 0.3s ease;
-                overflow-y: auto;
-            }
-
-            nav.active {
-                left: 0;
-            }
-
-            nav a {
-                width: 100%;
-                padding: 12px 15px;
-                font-size: 15px;
-                border-left: 3px solid transparent;
-                transition: all 0.3s;
-            }
-
-            nav a:hover {
-                background-color: #f5f5f5;
-                border-left-color: #7fb800;
-                padding-left: 20px;
-            }
-
-            nav a::after {
-                display: none;
-            }
-
-            .donate-btn {
-                width: 100%;
-                text-align: center;
-                padding: 14px 20px;
-                font-size: 14px;
-                margin-top: 10px;
-            }
-
-            .hero {
-                height: 450px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-                padding: 0 20px;
-            }
-
-            .hero-subtitle {
-                font-size: 16px;
-            }
-
-            .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
-                padding: 50px 20px;
-            }
-
-            .about-left h2 {
-                font-size: 24px;
-            }
-
-            .about-left p {
-                font-size: 16px;
-            }
-
-            .film-section {
-                padding: 30px 20px;
-            }
-
-            .film-section h3 {
-                font-size: 18px;
-            }
-
-            .founder-text h2 {
+            .section-title h2 {
                 font-size: 32px;
-            }
-
-            .founder-text h3 {
-                font-size: 24px;
-            }
-
-            .founder-text p, .accommodation-text p {
-                font-size: 16px;
-            }
-
-            .section-title h2, .accommodation-title h2 {
-                font-size: 32px;
-            }
-
-            .section-title p, .accommodation-title p {
-                font-size: 16px;
-            }
-
-            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .project-image, .activity-image {
-                height: 220px;
-            }
-
-            .primary-school {
-                padding: 40px 20px;
-            }
-
-            .primary-school h3 {
-                font-size: 22px;
-            }
-
-            .school-slider {
-                width: 100%;
-                height: 280px;
-                margin: 30px auto;
-            }
-
-            .slider-btn {
-                font-size: 18px;
-                padding: 10px 15px;
-            }
-
-            .prev-btn {
-                left: 10px;
-            }
-
-            .next-btn {
-                right: 10px;
-            }
-
-            .read-more-btn, .find-out-btn {
-                padding: 14px 35px;
-                font-size: 14px;
-            }
-
-            .accommodation-text h3 {
-                font-size: 28px;
-            }
-
-            .gallery-images {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .gallery-img {
-                height: 250px;
-            }
-
-            .newsletter h3 {
-                font-size: 26px;
-            }
-
-            .newsletter p {
-                font-size: 14px;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .newsletter-form input {
-                width: 100%;
-                max-width: 100%;
-                padding: 14px 20px;
-            }
-
-            .newsletter-form button {
-                width: 100%;
-                max-width: 100%;
-                padding: 14px 20px;
-            }
-
-            .social-qr {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .footer {
-                padding: 30px 20px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 14px;
-                gap: 8px;
-            }
-
-            .logo img {
-                width: 40px;
-                height: 40px;
-            }
-
-            nav {
-                gap: 8px;
-                font-size: 11px;
-            }
-
-            nav a {
-                padding: 5px 8px;
-            }
-
-            .donate-btn {
-                padding: 6px 16px;
-                font-size: 11px;
-            }
-
-            .hero {
-                height: 400px;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .hero-subtitle {
-                font-size: 14px;
-            }
-
-            .about-left h2 {
-                font-size: 20px;
-            }
-
-            .about-left p {
-                font-size: 15px;
-            }
-
-            .founder-text h2 {
-                font-size: 26px;
-            }
-
-            .founder-text h3 {
-                font-size: 20px;
-            }
-
-            .section-title h2, .accommodation-title h2 {
-                font-size: 26px;
-            }
-
-            .section-title p, .accommodation-title p {
-                font-size: 14px;
-            }
-
-            .project-card h3, .activity-card h3 {
-                font-size: 16px;
-            }
-
-            .project-card p {
-                font-size: 14px;
-            }
-
-            .primary-school h3 {
-                font-size: 18px;
-                line-height: 1.4;
-            }
-
-            .school-slider {
-                height: 220px;
-                margin: 20px auto;
-            }
-
-            .slider-btn {
-                font-size: 16px;
-                padding: 8px 12px;
-            }
-
-            .read-more-btn, .find-out-btn {
-                padding: 12px 30px;
-                font-size: 13px;
-            }
-
-            .accommodation-text h3 {
-                font-size: 24px;
-            }
-
-            .newsletter h3 {
-                font-size: 22px;
-            }
-
-            .social-icons a {
-                width: 45px;
-                height: 45px;
-            }
-
-            .social-icons a svg {
-                width: 20px;
-                height: 20px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            header {
-                padding: 10px 15px;
-            }
-
-            .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
-                padding: 40px 15px;
-            }
-
-            .hero h1 {
-                font-size: 24px;
-            }
-
-            .section-title h2, .accommodation-title h2, .founder-text h2 {
-                font-size: 22px;
-            }
-
-            .school-slider {
-                height: 200px;
             }
         }
     </style>
@@ -1304,8 +798,10 @@
             <span>RIDE 4 A WOMAN</span>
         </div>
         <nav>
-            <a href="#about">ABOUT US</a>
+         <a>ABOUT US</a>
+            </div>
             <a href="#projects">PROJECTS</a>
+            </div>
             <a href="#activities">ACTIVITIES</a>
             <a href="#stay">STAY WITH US</a>
             <a href="#shop">THE SHOP</a>
@@ -1314,6 +810,7 @@
             <button class="donate-btn">DONATE</button>
         </nav>
     </header>
+
     <section class="hero">
         <div class="hero-slide"></div>
         <div class="hero-slide"></div>
@@ -1323,21 +820,261 @@
             <p class="hero-subtitle">Building brighter futures together</p>
         </div>
     </section>
-    <section class="founder-section">
-        <div class="founder-content">
-            <img class="founder-image" src="imgs/woman.jpg" alt="Founder">
-            
-            <div class="founder-text">
-                <h2>Our Founder's Story</h2>
-                <h3>Evelyne And Denis </h3>
-                <p>Details soon</p>
-                <p>deatils soon</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias distinctio illum cumque! Ea, doloremque soluta consequuntur minima accusantium totam ducimus explicabo, quam iste veritatis porro quos, ipsam sunt officia enim..</p>
-                <p>deatils soon.</p>
+
+    <section class="our-story" id="our-story">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>Our Story</h2>
+                <h3>Evelyne And Denis</h3>
+                <p>Ride 4 a Woman is a charitable organization set up to empower women socially and economically in the local community of Bwindi, Uganda. The organization supports women who are struggling with poverty, HIV and domestic violence, and single mothers, widows and women who never went to school, carrying out many projects with a huge impact into their lives.</p>
+                <p>Ride 4 a Woman was set up in 2009 by Evelyne Habasa and her husband Denis Rubalema. Evelyne grew up in the local community where the organization is established, and was inspired by her mother since she was very young. Her mother sacrificed a lot to put her eight children through school as she had no money to afford the basics. She owned one dress, a pretty red one, and she washed it every night so she could wear it again the next day. Her red dress was “the talk of the village”. Her frugality and very hard work managed to put all her children through good schools. This is the struggle most women go through every day in this community and what motivated Evelyne to start Ride 4 a Woman.</p>
+                <p> The organization started by renting bicycles to tourists who like riding. The money collected went directly to support local women struggling with issues associated with poverty, HIV and domestic violence. This is why the name “Ride 4 a Woman” came about: riding to support the women.</p>
+                <p>In 2011, Evelyne met Patricia, a woman from Australia, who came for Gorilla tracking. Patricia wanted to buy fabrics in Uganda to take back home to do quilting, and Evelyne help her by being her translator. When Patricia went back home, in Australia, she sent pictures of her quilting products to Evelyne. Evelyne loved them and thought that it would be great if the women of Ride 4 a Woman learned to sew. This would allow the organization to make its own handmade products, sell them and get more money to support  more women.</p>
+                <p>In 2012, the 16 pioneer women of the organization were trained to sew and weave by Patricia and two of her friends. After, these 16 women were the ones who started teaching many more women around the community through the “train the trainer” methodology.</p>
+                <p>More than 100 women were trained in total, and every day 60 of them work at Ride 4 a Woman center, making the handmade products that are sold in the shop of the organization. Apart from working, these 60 women find in Ride 4 a Woman a space of safety and support, a meal is provided to them and earn a salary that is given to them every two weeks.
+Ride 4 a Woman has a total of 300 members, all of them are women from the 11 villages in Bwindi who benefit from the organization.</p>
+                <p>The organization leads many different projects to empower women and improve people’s lives in the local community: microfinancing their entrepreneurial ideas, sponsoring the education of many children, providing safe water for all the community, installing solar panels in homes without electricity, among others. You can read more about our projects through the top main menu of the website.</p>
+                <p>Every day we welcome visitors to stay with us, learn from us while doing the activities we offer, shop or simply drop by to see what is going on. If you are visiting Bwindi, come and stay with us in our accommodation and restaurant, and learn about our culture and traditions while supporting our mission. We will be honored to welcome you at home.</p>
+            </div>
+            <div class="story-image"><img src="imgs/home.webp" alt=""></div>
+        </div>
+    </section>
+
+    <section class="meet-team" id="meet-team">
+        <div class="section-title">
+            <h2>Meet Our Team</h2>
+            <p>dedicated individuals making a difference</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-photo"><img src="imgs/Evelyne.webp" alt=""></div>
+                <div class="team-info">
+                    <h3>Evelyne Habasa </h3>
+                    <p class="role">Founder</p>
+                    <p>Eve is the founder of Ride 4 a Woman and originally from Buhoma where the organization is based today. Eve is fulfilling her mother’s dream and delivering on her vision for a better future for women. Eve has a Bachelor’s degree in Tourism from Makerere University, Kampala and all the passion and determination required to drive Ride 4 a Woman forward.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo"><img src="imgs/Denis+(1).webp" alt=""></div>
+                <div class="team-info">
+                    <h3>Denis Rubalema </h3>
+                    <p class="role">Founder</p>
+                    <p>Denis co-founded Ride 4 a Woman with his wife Evelyn Habasa and is the driving force behind the day to day operations and financial control of the organization. Denis grew up and studied in Kampala and has a Bachelors degree in Development Studies and a masters in marketing acquired in the UK.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-photo"><img src="imgs/Ruth.webp" alt=""></div>
+                <div class="team-info">
+                    <h3>Ruth Turyamureeba </h3>
+                    <p class="role">Chairperson</p>
+                    <p>Ruth is Chairperson for Ride 4 a Woman, performing a vital liaison role between the 300 women who are members of the organization and the management team. Ruth is the first escalation point for any and all of the women members and she runs the show with absolute dedication when Eve and Denis are occupied elsewhere.</p>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+    <section class="inspiring-stories" id="inspiring-stories">
+        <div class="section-title">
+            <h2>Inspiring Stories</h2>
+            <p>real lives transformed through empowerment</p>
+        </div>
+        <div class="stories-grid">
+            <div class="story-card">
+                <h3>Happiness Bakundana</h3>
+                <p class="quote">"Happiness is 59 years old and lives in Kashebeya."</p>
+                <p> Happiness works in Buhoma council representing her village, Kashebeya. She also works in R4W in basket weaving. She studied in primary and secondary school. She lives with her husband and 4 grandchildren in a house that they are improving little by little. Her husband is a farmer and grows tea, coffee and bananas in their fields.</p>
+
+                <p>Happiness has been always leading social and community issues and, a part of represent Kashebeya in Buhoma’s council, she is also a member of the village health team, being in contact with Buhoma’s Hospital every time is needed.</p>
+                <p>R4W provided her with a loan which she is using to finance the construction of her home and a solar panel that she and her husband are using to light their home. Before having the solar panel, she used to have a paraffined light. She has been one of the first ones to be benefited by the R4W solar program, now having good quality light that allows her to charge her mobile phone, her grandchildren to do their homework and the entire family to feel more secure</p>
+                <p>Happiness and her husband are very grateful to R4W.</p>
+            </div>
+            <!--div class="story-card">
+                <h3>Josephine's Education Dream</h3>
+                <p class="quote">"I never thought I'd see my daughter in a school uniform. Now she's top of her class."</p>
+                <p>Josephine's daughter received sponsorship through our education program. With school fees covered and supplies provided, her daughter is thriving academically and dreams of becoming a teacher to help other children in the community.</p>
+            </div>
+            <div class="story-card">
+                <h3>Margaret's New Beginning</h3>
+                <p class="quote">"The solar panel changed everything. My children can study at night, and we feel safe."</p>
+                <p>Through our Light a Home program, Margaret's family received solar panels. The electricity transformed their lives, allowing her children to study after dark and eliminating dangerous kerosene lamps.</p>
+            </div-->
+            <div class="story-card">
+                <h3>Penina</h3>
+                <p class="quote">"Penina has a food business in Buhoma. She sells raw aliments such as beans, flour and some candies."</p>
+                <p>She lives in Buhoma village with her husband and 3 children. She started her business by herself some years ago and the loan she received from R4W helped her a lot to grow her business, being able to have more products and in higher quantities. The local where she has the store for selling her products is shared with another financed women.</p>
+                <p>Penina wants to continue investing in her food business to increase her stocks and the variety of inventories. Getting more benefits will allow her to pay</p>
+                <p>schooling not only for one of her children, as she does nowadays, but also for the rest of them.</p>
             </div>
         </div>
     </section>
-      <section class="about" id="about">
+
+   <section class="sustainability" id="sustainability">
+        <div class="section-title">
+            <h2>Our Commitment to Sustainability</h2>
+            <p>building lasting change for future generations</p>
+        </div>
+        
+        <div class="sustainability-intro">
+            <p>Ride 4 a Woman is a Ugandan non-governmental organization set up to empower women socially and economically in our local community, in Bwindi, Uganda.</p>
+            
+            <p>Sustainability is at the core of Ride 4 a Woman. We are located at the edge of Bwindi Impenetrable Forest National Park, home to half of the world's mountain gorilla population. We are very aware of the importance of conserving the national park, the gorillas and other species of fauna and flora, and the surrounding areas of the park, where people live in. We believe that a good life for people while respecting the biodiversity and ecosystems of our planet is possible and necessary. It is our duty to make it a reality.</p>
+            
+            <p>Since Ride 4 a Woman was founded in 2009, all the efforts of the organization have always focused on improving people's lives and protecting our planet. Empowering women is our reason for being, and sustainability is the only way to make it possible.</p>
+            
+            <p>To finance our social projects, in Ride 4 a Woman we welcome visitors and tourists to our center every day. We offer a wide range of services to tourists who visit Bwindi, most of them interested in tracking the mountain gorillas in the national park. We offer accommodation, restaurant and cafeteria services, activities to learn about Ugandan traditions and culture and our craft shop where visitors can buy any of the handmade products made by the women of the organization. Ride 4 a Woman, then, is a social enterprise immersed in the tourism sector, and we work to make this sector a sustainable industry in Uganda.</p>
+        </div>
+
+        <div class="sdg-intro">
+            <p>In 2015, the world agreed on the need of establishing the United Nations Sustainable Development Goals (SDGs) to guide the individuals, organizations and governments towards the most important challenges that we face as humanity. At Ride 4 a Woman, the SDGs guide us in the different fields of sustainability. We are very proud of the positive impact that we have, through our daily work, on 10 of the 17 SDGs. We've split them in 3 groups depending on the repercussion that Ride 4 a Woman has on each of them: very highly, highly and moderately impacted SDGs.</p>
+        </div>
+
+        <div class="sdg-section">
+            <h3 class="sdg-category">VERY HIGHLY impacted SDGs</h3>
+            
+            <div class="sdg-grid">
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #e5243b;">
+                        <span class="sdg-number">1</span>
+                        <span class="sdg-title">NO POVERTY</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"End poverty in all its forms everywhere"</p>
+                        <p>Almost half of the Ugandan population lives on less than $2.15 a day (being $2.15/day the International Poverty Line, according to the World Bank). In Ride 4 a Woman we fight against poverty by empowering women from our community who are struggling with poverty, HIV and domestic violence, are single mothers, widows or women who never went to school. To do so, the organization employs 60 women with the mentioned profiles who come to work every day at our center. These women were taught to pedal sew and weave, and they are the ones who make the handmade products that are sold in our craft shop.</p>
+                        <p>Ride 4 a Woman has 300 members and supports them, their families and many more people from the community to combat poverty through all our projects: Employing women, Children sponsorship, Light a home, Goats program, Microfinance, Safe water, Agriculture, and Building a home.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #c5192d;">
+                        <span class="sdg-number">4</span>
+                        <span class="sdg-title">QUALITY EDUCATION</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all"</p>
+                        <p>In Uganda and in our community, there are many children who don't go to school (usually because of economic reasons) and the percentages of people who cannot read and write are still very high. In Ride 4 a Woman, we work to put as many children as possible into schools, and we do it through our children sponsorship program. Nowadays, more than 270 children, from families who cannot afford paying school fees, go to school thanks to Ride 4 a Woman. We make sure to pay school fees on time and to provide uniforms and school supplies to the kids, so that they can focus all their attention on what really matters to them: studying and learning.</p>
+                        <p>But Ride 4 a Woman doesn't stop here. Our dream is to build a primary school in our community, in an area where the need of it is very high. See our future primary school project to know more about it.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #ff3a21;">
+                        <span class="sdg-number">5</span>
+                        <span class="sdg-title">GENDER EQUALITY</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Achieve gender equality and empower all women and girls"</p>
+                        <p>In our community and generally in all Uganda, women depend on their husbands in many social and economic decisions, sometimes not even being able to work outside their homes. Empowering women socially and economically is our daily work at Ride 4 a Woman, and it is the best way we know to achieve gender equality in our community. In our center, all the women find a space of safety, where they can speak aloud and get support among the others. Moreover, apart from providing employment and a safety space for the women, we have a specific program to fight domestic violence; we educate on family planning and reproductive health and rights; we skill women in sewing, weaving, agriculture practices and basic financials; and we provide spiritual guidance.</p>
+                        <p>We are extremely proud to see how confident the women who are supported by Ride 4 a Woman are in their daily lives compared to the time when they started coming to our center. Little by little, they are becoming the leaders of the community.</p>
+                        <p>Gender equality is very important not only for the women that we support with our social projects, but also for our staff members, the people who, through their work, make Ride 4 a Woman possible.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #26bde2;">
+                        <span class="sdg-number">6</span>
+                        <span class="sdg-title">CLEAN WATER AND SANITATION</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Ensure availability and sustainable management of water and sanitation for all"</p>
+                        <p>Less than 20% of Ugandan population has access to safely managed drinking water services. In our community, improved water sources are not very accessible to everyone, so many people are exposed to water-borne diseases. Since 2015, in Ride 4 a Woman we have 5 water purifying filters that provide us with safe water. Moreover, from time to time, we supply jerrycans to families around the community, and we encourage everyone to come to our center and get safe water. It is very common to see children at Ride 4 a Woman every day after school filling their jerrycans with water from the purifying filters to take home before dinner time.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #a21942;">
+                        <span class="sdg-number">8</span>
+                        <span class="sdg-title">DECENT WORK AND ECONOMIC GROWTH</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all"</p>
+                        <p>In Ride 4 a Woman we promote entrepreneurship, the establishment of local businesses in our community, decent job creation and opportunities for the youth. Through our microfinance program, we provide low interest loans to women of our community who aim to start and grow their businesses, promoting in this way our local economy and its sustainability. More than 210 women have benefited from this program since it started in 2017, who had the chance to make their personal and professional projects a reality.</p>
+                        <p>Moreover, we care about offering good working conditions, training and economic remuneration to all our staff, and we welcome students who are interested in doing their internships with us, giving them the opportunity to learn and be considered for the future, once they finalize their studies. All the staff members and the 60 women can benefit from saving groups and a healthcare insurance, both provided and managed by Ride 4 a Woman.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sdg-section">
+            <h3 class="sdg-category">HIGHLY impacted SDGs</h3>
+            
+            <div class="sdg-grid">
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #dda63a;">
+                        <span class="sdg-number">2</span>
+                        <span class="sdg-title">ZERO HUNGER</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"End hunger, achieve food security and improved nutrition and promote sustainable agriculture"</p>
+                        <p>In Uganda, around 20% of the population experiment severe food insecurity, meaning that very often they are forced to reduce the quantity of the food, skip meals or be hungry during the day because of a lack of money or other resources. In Ride 4 a Woman, we have an agriculture program called "Seeds of grace" in which twice a year, before the beginning of the two annual rainy seasons, we provide seeds, tools and training to 120 women, so they can harvest their lands and assure food for their families. Moreover, every woman receiving the seeds and training has the duty to bud another woman of her village to keep spreading the acquired skills through the community.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #4c9f38;">
+                        <span class="sdg-number">3</span>
+                        <span class="sdg-title">GOOD HEALTH AND WELL-BEING</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Ensure healthy lives and promote well-being for all at all ages"</p>
+                        <p>Although the situation is better than in the past, HIV is still a leading cause of death and public health threat in Uganda. Women with HIV are one of the groups supported by Ride 4 a Woman since it was founded. We assure that they have the same opportunities than the others, and we help and educate on how to control the disease so that these women can have normal lives. Moreover, we encourage and educate on family planning and menstrual health and support our pregnant women and the ones with babies. As it was mentioned in the "6 - CLEAN WATER AND SANITATION" section, Ride 4 a Woman helps to prevent water-borne diseases supplying safe water to anyone in the community.</p>
+                        <p>Finally, all staff members and the 60 women can benefit from a healthcare insurance provided and managed by Ride 4 a Woman.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #fcc30b;">
+                        <span class="sdg-number">7</span>
+                        <span class="sdg-title">AFFORDABLE AND CLEAN ENERGY</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Ensure access to affordable, reliable, sustainable and modern energy for all"</p>
+                        <p>Less than 50% of Ugandans have access to electricity, and we estimate that in our community, a very rural area far from the capital city, the percentage is even lower. In Ride 4 a Woman we work to overcome this situation by providing and installing solar panels in houses without electricity. We started our solar panels program called "Light a home" in 2023 and, since then, we have lighted more than 60 homes, drastically improving the lives of these families.</p>
+                        <p>Moreover, since September 2024, the electricity that we consume in our center is also solar, making Ride 4 a Woman a clean energy and energy self-sufficient NGO, lodge and touristic destination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sdg-section">
+            <h3 class="sdg-category">MODERATELY impacted SDGs</h3>
+            
+            <div class="sdg-grid">
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #3f7e44;">
+                        <span class="sdg-number">13</span>
+                        <span class="sdg-title">CLIMATE ACTION</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Take urgent action to combat climate change and its impacts"</p>
+                        <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
+                    </div>
+                </div>
+
+                <div class="sdg-card">
+                    <div class="sdg-icon" style="background-color: #56c02b;">
+                        <span class="sdg-number">15</span>
+                        <span class="sdg-title">LIFE ON LAND</span>
+                    </div>
+                    <div class="sdg-content">
+                        <p class="sdg-quote">"Protect, restore and promote sustainable use of terrestrial ecosystems, sustainably manage forests, combat desertification, and halt and reverse land degradation and halt biodiversity loss"</p>
+                        <p>The world is currently facing one of the largest species extinctions ever and, as it happens with climate change, it is due to human activity. One of the main reasons for it is the reduction of forest areas and other natural spaces. The total forest area in Uganda has reduced from 16% to 11% in the last 25 years. In Ride 4 a Woman we believe that protecting the forests is crucial, so we work for the conservation of Bwindi Impenetrable Forest National Park, its mountain gorillas and other wildlife. We partner with Ugandan Wildlife Authority (UWA) and support the park headquarters, in Buhoma, by welcoming, entertaining and bringing local tea, coffee and other meals to the park visitors and employees. Moreover, every time we can, we spread the word about the importance of conservation for both the planet and the people.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sdg-sources">
+            <h4>Sources of information used:</h4>
+            <ul>
+                <li>Sustainable Development Goals from United Nations: <a href="https://sdgs.un.org/goals" target="_blank">https://sdgs.un.org/goals</a></li>
+                <li>World Bank Ugandan data: <a href="https://data.worldbank.org/country/UG" target="_blank">https://data.worldbank.org/country/UG</a></li>
+            </ul>
+            <p class="update-note">Last update of the data for this article: January 2025</p>
+        </div>
+    </section>
+
+    <section class="about" id="about">
         <div class="about-content">
             <div class="about-left">
                 <h2><span class="about-highlight">Ride 4 a Woman</span> is a Ugandan non-governmental organization dedicated to supporting women facing the challenges of poverty, HIV, domestic violence, single motherhood, widowhood and who never had the opportunity to attend school.</h2>
@@ -1346,11 +1083,12 @@
             <div class="about-right">
                 <div class="film-section">
                     <h3><strong>NEW!!!</strong> Watch the new <a href="#">film of Ride 4 a Woman</a> to get the best overview of the organization.</h3>
-                    <img class="film-image" src="imgs/film+image.webp" alt="Ride 4 a Woman Team">
+                    <div class="film-image"></div>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="projects" id="projects">
         <div class="section-title">
             <h2>Our projects</h2>
@@ -1416,7 +1154,7 @@
                 </div>
             </div>
         </div>
-        <div class="primary-school">
+    <div class="primary-school">
             <h3>Find out more about our new PRIMARY SCHOOL project</h3> 
             <div class="school-slider">
                 <div class="school-slide">
@@ -1468,6 +1206,7 @@
             </div>
         </div>
     </section>
+
     <section class="accommodation" id="stay">
         <div class="accommodation-title">
             <h2>Accommodation</h2>
