@@ -878,6 +878,421 @@
                 width: 100%;
                 height: 300px;
             }
+
+        }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .about, .projects, .activities, .founder-section, .accommodation {
+                padding: 60px 40px;
+            }
+
+            .about-content, .founder-content {
+                gap: 50px;
+            }
+
+            .section-title h2, .accommodation-title h2, .founder-text h2 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 15px 30px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .donate-btn {
+                padding: 10px 24px;
+                font-size: 13px;
+            }
+
+            .hero {
+                height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .about-content, .founder-content, .accommodation-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .gallery-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .school-slider {
+                width: 90%;
+                height: 350px;
+            }
+
+            .about, .projects, .activities, .founder-section, .accommodation, .newsletter {
+                padding: 60px 30px;
+            }
+
+            .section-title h2, .accommodation-title h2 {
+                font-size: 38px;
+            }
+
+            .founder-text h2 {
+                font-size: 36px;
+            }
+
+            .accommodation-text h3 {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background-color: #fff;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 30px 20px;
+                gap: 20px;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav a {
+                width: 100%;
+                padding: 12px 15px;
+                font-size: 15px;
+                border-left: 3px solid transparent;
+                transition: all 0.3s;
+            }
+
+            nav a:hover {
+                background-color: #f5f5f5;
+                border-left-color: #7fb800;
+                padding-left: 20px;
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            .donate-btn {
+                width: 100%;
+                text-align: center;
+                padding: 14px 20px;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            .hero {
+                height: 450px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+                padding: 0 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
+                padding: 50px 20px;
+            }
+
+            .about-left h2 {
+                font-size: 24px;
+            }
+
+            .about-left p {
+                font-size: 16px;
+            }
+
+            .film-section {
+                padding: 30px 20px;
+            }
+
+            .film-section h3 {
+                font-size: 18px;
+            }
+
+            .founder-text h2 {
+                font-size: 32px;
+            }
+
+            .founder-text h3 {
+                font-size: 24px;
+            }
+
+            .founder-text p, .accommodation-text p {
+                font-size: 16px;
+            }
+
+            .section-title h2, .accommodation-title h2 {
+                font-size: 32px;
+            }
+
+            .section-title p, .accommodation-title p {
+                font-size: 16px;
+            }
+
+            .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-image, .activity-image {
+                height: 220px;
+            }
+
+            .primary-school {
+                padding: 40px 20px;
+            }
+
+            .primary-school h3 {
+                font-size: 22px;
+            }
+
+            .school-slider {
+                width: 100%;
+                height: 280px;
+                margin: 30px auto;
+            }
+
+            .slider-btn {
+                font-size: 18px;
+                padding: 10px 15px;
+            }
+
+            .prev-btn {
+                left: 10px;
+            }
+
+            .next-btn {
+                right: 10px;
+            }
+
+            .read-more-btn, .find-out-btn {
+                padding: 14px 35px;
+                font-size: 14px;
+            }
+
+            .accommodation-text h3 {
+                font-size: 28px;
+            }
+
+            .gallery-images {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-img {
+                height: 250px;
+            }
+
+            .newsletter h3 {
+                font-size: 26px;
+            }
+
+            .newsletter p {
+                font-size: 14px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+                max-width: 100%;
+                padding: 14px 20px;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+                max-width: 100%;
+                padding: 14px 20px;
+            }
+
+            .social-qr {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer {
+                padding: 30px 20px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 14px;
+                gap: 8px;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            nav {
+                gap: 8px;
+                font-size: 11px;
+            }
+
+            nav a {
+                padding: 5px 8px;
+            }
+
+            .donate-btn {
+                padding: 6px 16px;
+                font-size: 11px;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .about-left h2 {
+                font-size: 20px;
+            }
+
+            .about-left p {
+                font-size: 15px;
+            }
+
+            .founder-text h2 {
+                font-size: 26px;
+            }
+
+            .founder-text h3 {
+                font-size: 20px;
+            }
+
+            .section-title h2, .accommodation-title h2 {
+                font-size: 26px;
+            }
+
+            .section-title p, .accommodation-title p {
+                font-size: 14px;
+            }
+
+            .project-card h3, .activity-card h3 {
+                font-size: 16px;
+            }
+
+            .project-card p {
+                font-size: 14px;
+            }
+
+            .primary-school h3 {
+                font-size: 18px;
+                line-height: 1.4;
+            }
+
+            .school-slider {
+                height: 220px;
+                margin: 20px auto;
+            }
+
+            .slider-btn {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+
+            .read-more-btn, .find-out-btn {
+                padding: 12px 30px;
+                font-size: 13px;
+            }
+
+            .accommodation-text h3 {
+                font-size: 24px;
+            }
+
+            .newsletter h3 {
+                font-size: 22px;
+            }
+
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+            }
+
+            .social-icons a svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
+                padding: 40px 15px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .section-title h2, .accommodation-title h2, .founder-text h2 {
+                font-size: 22px;
+            }
+
+            .school-slider {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -1152,7 +1567,7 @@
             </div>
             <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <rect width="100" height="100" fill="#fff" stroke="#7fb800" stroke-width="2" rx="5"/>
-                <text x="50" y="50" text-anchor="middle" dy=".3em" fill="#2d5016" font-size="12" font-weight="600">QR Code</text>
+                <text x="50" y="50" text-anchor="middle" dy=".3em" fill="#2d5016" font-size="12" font-weight="600"></text>
             </svg>
         </div>
     </section>
