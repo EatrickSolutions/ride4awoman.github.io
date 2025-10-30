@@ -36,1052 +36,6 @@ header {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: white;
-    font-weight: 700;
-    font-size: 20px;
-    transition: all 0.3s;
-}
-
-.social-icons a svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-}
-
-.social-icons a:hover {
-    background-color: transparent;
-    border-color: #ffeb3b;
-    color: #ffeb3b;
-    transform: translateY(-5px);
-}
-
-.social-icons a:hover svg {
-    fill: #ffeb3b;
-}
-
-.footer {
-    background-color: #1a2f0d;
-    padding: 40px 60px;
-    text-align: center;
-    font-size: 14px;
-    color: #b0b0b0;
-}
-
-.footer a {
-    color: #7fb800;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.footer a:hover {
-    color: #ffeb3b;
-}
-
-/* Dropdown Navigation Styles */
-.nav-item {
-    position: relative;
-    display: inline-block;
-}
-
-.nav-item > a {
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    min-width: 200px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    padding: 10px 0;
-    z-index: 1000;
-    margin-top: 5px;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 12px 20px;
-    color: #2d5016;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
-
-.dropdown-menu a:hover {
-    background-color: #f0f7e6;
-    color: #7fb800;
-}
-
-.nav-item:hover .dropdown-menu {
-    display: block;
-}
-
-header nav .nav-item {
-    vertical-align: top;
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Extra large screens */
-@media (max-width: 1400px) {
-    .about, .projects, .activities, .founder-section, .accommodation {
-        max-width: 100%;
-        padding: 80px 50px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .about, .projects, .activities, .founder-section, .accommodation {
-        padding: 60px 40px;
-    }
-
-    .about-content, .founder-content {
-        gap: 50px;
-    }
-
-    .section-title h2, .accommodation-title h2, .founder-text h2 {
-        font-size: 40px;
-    }
-
-    .projects-grid, .projects-grid-2 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 1024px) {
-    header {
-        padding: 15px 30px;
-    }
-
-    nav {
-        gap: 15px;
-    }
-
-    nav a {
-        font-size: 13px;
-    }
-
-    .donate-btn {
-        padding: 10px 24px;
-        font-size: 13px;
-    }
-
-    .hero {
-        height: 500px;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .hero-subtitle {
-        font-size: 18px;
-    }
-
-    .about-content, .founder-content, .accommodation-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .projects-grid, .projects-grid-2 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .activities-grid, .activities-grid-2 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .gallery-images {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .school-slider {
-        width: 90%;
-        height: 350px;
-    }
-
-    .about, .projects, .activities, .founder-section, .accommodation, .newsletter {
-        padding: 60px 30px;
-    }
-
-    .section-title h2, .accommodation-title h2 {
-        font-size: 38px;
-    }
-
-    .founder-text h2 {
-        font-size: 36px;
-    }
-
-    .accommodation-text h3 {
-        font-size: 34px;
-    }
-}
-
-@media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-        position: relative;
-    }
-
-    .logo {
-        font-size: 16px;
-        z-index: 1001;
-    }
-
-    .menu-toggle {
-        display: flex;
-        z-index: 1001;
-    }
-
-    nav {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 280px;
-        max-width: 80vw;
-        height: calc(100vh - 70px);
-        background-color: #fff;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 30px 20px;
-        gap: 20px;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        transition: left 0.3s ease;
-        overflow-y: auto;
-    }
-
-    nav.active {
-        left: 0;
-    }
-
-    nav a {
-        width: 100%;
-        padding: 12px 15px;
-        font-size: 15px;
-        border-left: 3px solid transparent;
-        transition: all 0.3s;
-    }
-
-    nav a:hover {
-        background-color: #f5f5f5;
-        border-left-color: #7fb800;
-        padding-left: 20px;
-    }
-
-    nav a::after {
-        display: none;
-    }
-
-    .nav-item {
-        display: block;
-        width: 100%;
-    }
-
-    .dropdown-menu {
-        position: static;
-        display: none;
-        background: #f9f9f9;
-        box-shadow: none;
-        padding: 0;
-        margin-top: 0;
-    }
-
-    .nav-item:hover .dropdown-menu {
-        display: none;
-    }
-
-    .nav-item.active .dropdown-menu {
-        display: block;
-    }
-
-    .dropdown-menu a {
-        padding: 10px 15px 10px 40px;
-        border-left: 3px solid #7fb800;
-    }
-
-    .donate-btn {
-        width: 100%;
-        text-align: center;
-        padding: 14px 20px;
-        font-size: 14px;
-        margin-top: 10px;
-    }
-
-    .hero {
-        height: 450px;
-        background-attachment: scroll;
-    }
-
-    .hero h1 {
-        font-size: 32px;
-        padding: 0 20px;
-    }
-
-    .hero-subtitle {
-        font-size: 16px;
-        padding: 0 20px;
-    }
-
-    .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
-        padding: 50px 20px;
-    }
-
-    .about-left h2 {
-        font-size: 24px;
-    }
-
-    .about-left p {
-        font-size: 16px;
-    }
-
-    .film-section {
-        padding: 30px 20px;
-    }
-
-    .film-section h3 {
-        font-size: 18px;
-    }
-
-    .founder-text h2 {
-        font-size: 28px;
-    }
-
-    .founder-text h3 {
-        font-size: 22px;
-    }
-
-    .founder-text p, .accommodation-text p {
-        font-size: 16px;
-    }
-
-    .section-title h2, .accommodation-title h2 {
-        font-size: 28px;
-    }
-
-    .section-title p, .accommodation-title p {
-        font-size: 16px;
-    }
-
-    .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .project-image, .activity-image {
-        height: 220px;
-    }
-
-    .primary-school {
-        padding: 40px 20px;
-    }
-
-    .primary-school h3 {
-        font-size: 20px;
-    }
-
-    .school-slider {
-        width: 100%;
-        max-width: 100%;
-        height: 280px;
-        margin: 30px auto;
-    }
-
-    .slider-btn {
-        font-size: 18px;
-        padding: 10px 15px;
-    }
-
-    .prev-btn {
-        left: 10px;
-    }
-
-    .next-btn {
-        right: 10px;
-    }
-
-    .read-more-btn, .find-out-btn {
-        padding: 14px 35px;
-        font-size: 14px;
-    }
-
-    .accommodation-text h3 {
-        font-size: 26px;
-    }
-
-    .gallery-images {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .gallery-img {
-        height: 250px;
-    }
-
-    .newsletter h3 {
-        font-size: 24px;
-    }
-
-    .newsletter p {
-        font-size: 14px;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        width: 100%;
-    }
-
-    .newsletter-form input {
-        width: 100%;
-        max-width: 100%;
-        padding: 14px 20px;
-    }
-
-    .newsletter-form button {
-        width: 100%;
-        max-width: 100%;
-        padding: 14px 20px;
-    }
-
-    .social-qr {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .footer {
-        padding: 30px 20px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 14px;
-        gap: 8px;
-    }
-
-    .logo img {
-        width: 40px;
-        height: 40px;
-    }
-
-    header {
-        padding: 12px 15px;
-    }
-
-    nav {
-        width: 250px;
-        max-width: 75vw;
-        top: 60px;
-        height: calc(100vh - 60px);
-        padding: 25px 15px;
-    }
-
-    .menu-toggle span {
-        width: 22px;
-        height: 2.5px;
-    }
-
-    .hero {
-        height: 350px;
-    }
-
-    .hero h1 {
-        font-size: 26px;
-        padding: 0 15px;
-        line-height: 1.3;
-    }
-
-    .hero-subtitle {
-        font-size: 14px;
-        letter-spacing: 0.5px;
-        padding: 0 15px;
-    }
-
-    .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
-        padding: 40px 15px;
-    }
-
-    .about-left h2 {
-        font-size: 22px;
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-
-    .about-left p {
-        font-size: 15px;
-        margin-bottom: 15px;
-        line-height: 1.6;
-    }
-
-    .film-section {
-        padding: 25px 15px;
-    }
-
-    .film-section h3 {
-        font-size: 17px;
-        margin-bottom: 20px;
-        line-height: 1.5;
-    }
-
-    .film-image {
-        max-width: 100%;
-        margin: 15px auto 0;
-    }
-
-    .founder-text h2 {
-        font-size: 24px;
-        margin-bottom: 15px;
-        line-height: 1.3;
-    }
-
-    .founder-text h3 {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-
-    .founder-text p {
-        font-size: 15px;
-        margin-bottom: 15px;
-        line-height: 1.6;
-    }
-
-    .section-title h2, .accommodation-title h2 {
-        font-size: 24px;
-        margin-bottom: 10px;
-        line-height: 1.3;
-    }
-
-    .section-title h2::after {
-        width: 60px;
-        height: 3px;
-        bottom: -8px;
-    }
-
-    .section-title p, .accommodation-title p {
-        font-size: 14px;
-        margin-top: 15px;
-        line-height: 1.5;
-    }
-
-    .project-card h3, .activity-card h3 {
-        font-size: 17px;
-        padding: 20px 15px;
-        margin-bottom: 0;
-        line-height: 1.4;
-    }
-
-    .project-card p {
-        font-size: 14px;
-        padding: 0 15px 20px 15px;
-        line-height: 1.6;
-    }
-
-    .project-card-content {
-        padding: 20px 15px;
-    }
-
-    .project-image, .activity-image {
-        height: 200px;
-    }
-
-    .primary-school {
-        padding: 30px 15px;
-    }
-
-    .primary-school h3 {
-        font-size: 19px;
-        line-height: 1.4;
-        margin-bottom: 20px;
-    }
-
-    .school-slider {
-        height: 240px;
-        margin: 20px auto;
-        width: 100%;
-    }
-
-    .slider-btn {
-        font-size: 16px;
-        padding: 8px 12px;
-    }
-
-    .prev-btn {
-        left: 8px;
-    }
-
-    .next-btn {
-        right: 8px;
-    }
-
-    .read-more-btn, .find-out-btn {
-        padding: 13px 30px;
-        font-size: 13px;
-        margin-top: 20px;
-        letter-spacing: 1px;
-    }
-
-    .accommodation-text h3 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        line-height: 1.3;
-    }
-
-    .accommodation-text p {
-        font-size: 15px;
-        margin-bottom: 15px;
-        line-height: 1.6;
-    }
-
-    .gallery-img {
-        height: 220px;
-    }
-
-    .newsletter {
-        padding: 50px 15px;
-    }
-
-    .newsletter h3 {
-        font-size: 22px;
-        margin-bottom: 12px;
-        line-height: 1.3;
-    }
-
-    .newsletter p {
-        font-size: 14px;
-        margin-bottom: 20px;
-        line-height: 1.5;
-    }
-
-    .newsletter-form {
-        gap: 12px;
-        margin: 30px 0;
-    }
-
-    .newsletter-form input,
-    .newsletter-form button {
-        padding: 13px 18px;
-        font-size: 14px;
-    }
-
-    .newsletter-privacy {
-        font-size: 12px;
-        line-height: 1.5;
-        padding: 0 10px;
-    }
-
-    .social-icons {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .social-icons a {
-        width: 44px;
-        height: 44px;
-        font-size: 18px;
-    }
-
-    .social-icons a svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .footer {
-        padding: 25px 15px;
-        font-size: 11px;
-        line-height: 1.6;
-    }
-}
-
-@media (max-width: 360px) {
-    header {
-        padding: 10px 12px;
-    }
-
-    .logo {
-        font-size: 13px;
-        gap: 6px;
-    }
-
-    .logo img {
-        width: 35px;
-        height: 35px;
-    }
-
-    nav {
-        width: 220px;
-        max-width: 70vw;
-        padding: 20px 12px;
-        top: 55px;
-        height: calc(100vh - 55px);
-    }
-
-    nav a {
-        font-size: 14px;
-        padding: 10px 12px;
-    }
-
-    .donate-btn {
-        padding: 12px 15px;
-        font-size: 13px;
-    }
-
-    .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
-        padding: 35px 12px;
-    }
-
-    .hero {
-        height: 300px;
-    }
-
-    .hero h1 {
-        font-size: 22px;
-        padding: 0 12px;
-        line-height: 1.3;
-    }
-
-    .hero-subtitle {
-        font-size: 13px;
-        padding: 0 12px;
-    }
-
-    .about-left h2 {
-        font-size: 20px;
-        line-height: 1.4;
-    }
-
-    .about-left p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .film-section {
-        padding: 20px 12px;
-    }
-
-    .film-section h3 {
-        font-size: 16px;
-        line-height: 1.5;
-    }
-
-    .founder-text h2 {
-        font-size: 22px;
-        line-height: 1.3;
-    }
-
-    .founder-text h3 {
-        font-size: 18px;
-    }
-
-    .founder-text p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .section-title h2, .accommodation-title h2, .founder-text h2 {
-        font-size: 22px;
-        line-height: 1.3;
-    }
-
-    .section-title p, .accommodation-title p {
-        font-size: 13px;
-    }
-
-    .project-card h3, .activity-card h3 {
-        font-size: 16px;
-        padding: 18px 12px;
-    }
-
-    .project-card p {
-        font-size: 13px;
-        padding: 0 12px 18px 12px;
-    }
-
-    .project-card-content {
-        padding: 18px 12px;
-    }
-
-    .project-image, .activity-image {
-        height: 180px;
-    }
-
-    .primary-school {
-        padding: 25px 12px;
-    }
-
-    .primary-school h3 {
-        font-size: 17px;
-        line-height: 1.4;
-    }
-
-    .school-slider {
-        height: 200px;
-        margin: 15px auto;
-    }
-
-    .slider-btn {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-    .prev-btn {
-        left: 5px;
-    }
-
-    .next-btn {
-        right: 5px;
-    }
-
-    .read-more-btn, .find-out-btn {
-        padding: 12px 25px;
-        font-size: 12px;
-        letter-spacing: 0.5px;
-    }
-
-    .founder-text h3 {
-        font-size: 18px;
-    }
-
-    .accommodation-text h3 {
-        font-size: 22px;
-        line-height: 1.3;
-    }
-
-    .accommodation-text p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .gallery-img {
-        height: 200px;
-    }
-
-    .newsletter {
-        padding: 40px 12px;
-    }
-
-    .newsletter h3 {
-        font-size: 20px;
-        line-height: 1.3;
-    }
-
-    .newsletter p {
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
-    .newsletter-form {
-        gap: 10px;
-        margin: 25px 0;
-    }
-
-    .newsletter-form input,
-    .newsletter-form button {
-        padding: 12px 15px;
-        font-size: 13px;
-    }
-
-    .newsletter-privacy {
-        font-size: 11px;
-        padding: 0 5px;
-    }
-
-    .social-icons {
-        gap: 12px;
-    }
-
-    .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-
-    .social-icons a svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .footer {
-        padding: 20px 12px;
-        font-size: 10px;
-        line-height: 1.6;
-    }
-}
-
-/* Extra small phones (iPhone SE, older Android) */
-@media (max-width: 320px) {
-    .logo {
-        font-size: 12px;
-        gap: 5px;
-    }
-
-    .logo img {
-        width: 32px;
-        height: 32px;
-    }
-
-    header {
-        padding: 8px 10px;
-    }
-
-    nav {
-        width: 200px;
-        padding: 15px 10px;
-        gap: 15px;
-    }
-
-    .hero {
-        height: 280px;
-    }
-
-    .hero h1 {
-        font-size: 20px;
-        padding: 0 10px;
-    }
-
-    .hero-subtitle {
-        font-size: 12px;
-        padding: 0 10px;
-    }
-
-    .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
-        padding: 30px 10px;
-    }
-
-    .about-left h2, .section-title h2, .accommodation-title h2, .founder-text h2 {
-        font-size: 19px;
-    }
-
-    .about-left p, .founder-text p, .accommodation-text p {
-        font-size: 13px;
-    }
-
-    .film-section {
-        padding: 18px 10px;
-    }
-
-    .film-section h3 {
-        font-size: 15px;
-    }
-
-    .project-card h3, .activity-card h3 {
-        font-size: 15px;
-        padding: 15px 10px;
-    }
-
-    .project-card p {
-        font-size: 12px;
-        padding: 0 10px 15px 10px;
-    }
-
-    .project-image, .activity-image {
-        height: 160px;
-    }
-
-    .primary-school {
-        padding: 20px 10px;
-    }
-
-    .primary-school h3 {
-        font-size: 16px;
-    }
-
-    .school-slider {
-        height: 180px;
-    }
-
-    .read-more-btn, .find-out-btn {
-        padding: 10px 20px;
-        font-size: 11px;
-    }
-
-    .accommodation-text h3 {
-        font-size: 20px;
-    }
-
-    .newsletter {
-        padding: 35px 10px;
-    }
-
-    .newsletter h3 {
-        font-size: 18px;
-    }
-
-    .newsletter p {
-        font-size: 12px;
-    }
-
-    .newsletter-form input,
-    .newsletter-form button {
-        padding: 11px 12px;
-        font-size: 12px;
-    }
-
-    .social-icons a {
-        width: 38px;
-        height: 38px;
-    }
-
-    .social-icons a svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    .footer {
-        padding: 18px 10px;
-        font-size: 9px;
-    }
-}
-
-/* Landscape mode fixes for phones */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        height: 400px;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .hero-subtitle {
-        font-size: 14px;
-    }
-
-    nav {
-        height: calc(100vh - 60px);
-        padding: 20px 15px;
-    }
-}
-
-/* Ensure images don't overflow on small screens */
-@media (max-width: 768px) {
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .project-image,
-    .activity-image,
-    .gallery-img,
-    .founder-image,
-    .accommodation-image,
-    .film-image {
-        width: 100%;
-    }
-}
 }
 
 /* Hamburger Menu */
@@ -1301,17 +255,12 @@ nav a:hover::after {
     }
 }
 
-/* Scroll Fade Animation */
-.fade-in-element {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+/* Remove any blinking cursor styles */
+.hero h1 {
+    border-right: none !important;
 }
 
-.fade-in-element.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+
 
 /* About Section */
 .about {
@@ -1488,7 +437,7 @@ nav a:hover::after {
     margin-bottom: 70px;
 }
 
-/* Project Cards */
+/* Vibrant Project Cards with Brand-Themed Colors */
 .project-card {
     text-align: center;
     background: white;
@@ -1503,44 +452,104 @@ nav a:hover::after {
     border-top: 8px solid #7fb800;
     border-left: 8px solid #7fb800;
     background: linear-gradient(135deg, #F0F8E0 0%, #ffffff 100%);
+    position: relative;
+}
+
+.project-card:nth-child(1)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #7fb800;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .project-card:nth-child(1):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(127, 184, 0, 0.4);
+    background: linear-gradient(135deg, #E8F4D0 0%, #ffffff 100%);
 }
 
 .project-card:nth-child(2) {
     border-top: 8px solid #D4A574;
     border-left: 8px solid #D4A574;
     background: linear-gradient(135deg, #F9F3ED 0%, #ffffff 100%);
+    position: relative;
+}
+
+.project-card:nth-child(2)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #D4A574;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .project-card:nth-child(2):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+    background: linear-gradient(135deg, #F5EDE3 0%, #ffffff 100%);
 }
 
 .project-card:nth-child(3) {
     border-top: 8px solid #C17A6B;
     border-left: 8px solid #C17A6B;
     background: linear-gradient(135deg, #F8EDEA 0%, #ffffff 100%);
+    position: relative;
+}
+
+.project-card:nth-child(3)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #C17A6B;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .project-card:nth-child(3):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(193, 122, 107, 0.4);
+    background: linear-gradient(135deg, #F4E5E0 0%, #ffffff 100%);
 }
 
 .project-card:nth-child(4) {
     border-top: 8px solid #9B8B6F;
     border-left: 8px solid #9B8B6F;
     background: linear-gradient(135deg, #F6F3EE 0%, #ffffff 100%);
+    position: relative;
+}
+
+.project-card:nth-child(4)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #9B8B6F;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .project-card:nth-child(4):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(155, 139, 111, 0.4);
+    background: linear-gradient(135deg, #F1EDE5 0%, #ffffff 100%);
 }
 
 .project-image {
@@ -1578,52 +587,111 @@ nav a:hover::after {
     margin-bottom: 80px;
 }
 
-/* Projects Grid 2 Cards */
+/* Vibrant Project Cards Grid 2 with Individual Colors */
 .projects-grid-2 .project-card:nth-child(1) {
     border-top: 8px solid #A4B86C;
     border-left: 8px solid #A4B86C;
     background: linear-gradient(135deg, #F4F8E8 0%, #ffffff 100%);
+    position: relative;
+}
+
+.projects-grid-2 .project-card:nth-child(1)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #A4B86C;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .projects-grid-2 .project-card:nth-child(1):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(164, 184, 108, 0.4);
+    background: linear-gradient(135deg, #EBF2DC 0%, #ffffff 100%);
 }
 
 .projects-grid-2 .project-card:nth-child(2) {
     border-top: 8px solid #E8B4A8;
     border-left: 8px solid #E8B4A8;
     background: linear-gradient(135deg, #FBF5F1 0%, #ffffff 100%);
+    position: relative;
+}
+
+.projects-grid-2 .project-card:nth-child(2)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #E8B4A8;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .projects-grid-2 .project-card:nth-child(2):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(232, 180, 168, 0.4);
+    background: linear-gradient(135deg, #F8EBE3 0%, #ffffff 100%);
 }
 
 .projects-grid-2 .project-card:nth-child(3) {
     border-top: 8px solid #8B7355;
     border-left: 8px solid #8B7355;
     background: linear-gradient(135deg, #F1E8E3 0%, #ffffff 100%);
+    position: relative;
+}
+
+.projects-grid-2 .project-card:nth-child(3)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #8B7355;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .projects-grid-2 .project-card:nth-child(3):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(139, 115, 85, 0.4);
+    background: linear-gradient(135deg, #E8DDD4 0%, #ffffff 100%);
 }
 
 .projects-grid-2 .project-card:nth-child(4) {
     border-top: 8px solid #C4A86C;
     border-left: 8px solid #C4A86C;
     background: linear-gradient(135deg, #F7F3EA 0%, #ffffff 100%);
+    position: relative;
+}
+
+.projects-grid-2 .project-card:nth-child(4)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #C4A86C;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .projects-grid-2 .project-card:nth-child(4):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(196, 168, 108, 0.4);
+    background: linear-gradient(135deg, #F2EDDE 0%, #ffffff 100%);
 }
 
-/* Primary School Section */
 .primary-school {
     text-align: center;
     grid-column: 1 / -1;
@@ -1720,7 +788,7 @@ nav a:hover::after {
     box-shadow: 0 10px 25px rgba(255, 235, 59, 0.3);
 }
 
-/* Activities Section */
+/* Activities Section - COLORFUL */
 .activities {
     padding: 100px 60px;
     background: linear-gradient(135deg, #A4B86C 0%, #8B9D5F 100%);
@@ -1745,38 +813,83 @@ nav a:hover::after {
     border: 4px solid;
 }
 
-/* First Row Activity Cards */
+/* First Row Activity Cards - Brand Theme Colors */
 .activities-grid .activity-card:nth-child(1) {
     border: 4px solid #7fb800;
     border-left: 8px solid #7fb800;
     background: linear-gradient(135deg, #F0F8E0 0%, #fff 100%);
+    position: relative;
+}
+
+.activities-grid .activity-card:nth-child(1)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #7fb800;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .activities-grid .activity-card:nth-child(1):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(127, 184, 0, 0.4);
+    border-color: #6a9d00;
 }
 
 .activities-grid .activity-card:nth-child(2) {
     border: 4px solid #D4A574;
     border-left: 8px solid #D4A574;
     background: linear-gradient(135deg, #F9F3ED 0%, #fff 100%);
+    position: relative;
+}
+
+.activities-grid .activity-card:nth-child(2)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #D4A574;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .activities-grid .activity-card:nth-child(2):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+    border-color: #C17A6B;
 }
 
 .activities-grid .activity-card:nth-child(3) {
     border: 4px solid #C17A6B;
     border-left: 8px solid #C17A6B;
     background: linear-gradient(135deg, #F8EDEA 0%, #fff 100%);
+    position: relative;
+}
+
+.activities-grid .activity-card:nth-child(3)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #C17A6B;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .activities-grid .activity-card:nth-child(3):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(193, 122, 107, 0.4);
+    border-color: #9B8B6F;
 }
 
 .activities-grid-2 {
@@ -1785,45 +898,93 @@ nav a:hover::after {
     gap: 40px;
 }
 
-/* Second Row Activity Cards */
+/* Second Row Activity Cards - Brand Theme Colors */
 .activities-grid-2 .activity-card:nth-child(1) {
     border: 4px solid #A4B86C;
     border-left: 8px solid #A4B86C;
     background: linear-gradient(135deg, #F4F8E8 0%, #fff 100%);
+    position: relative;
+}
+
+.activities-grid-2 .activity-card:nth-child(1)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #A4B86C;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .activities-grid-2 .activity-card:nth-child(1):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(164, 184, 108, 0.4);
+    border-color: #7fb800;
 }
 
 .activities-grid-2 .activity-card:nth-child(2) {
     border: 4px solid #E8B4A8;
     border-left: 8px solid #E8B4A8;
     background: linear-gradient(135deg, #FBF5F1 0%, #fff 100%);
+    position: relative;
+}
+
+.activities-grid-2 .activity-card:nth-child(2)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #E8B4A8;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .activities-grid-2 .activity-card:nth-child(2):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(232, 180, 168, 0.4);
+    border-color: #D4A574;
 }
 
 .activities-grid-2 .activity-card:nth-child(3) {
     border: 4px solid #8B7355;
     border-left: 8px solid #8B7355;
     background: linear-gradient(135deg, #F1E8E3 0%, #fff 100%);
+    position: relative;
+}
+
+.activities-grid-2 .activity-card:nth-child(3)::before {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #8B7355;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .activities-grid-2 .activity-card:nth-child(3):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(139, 115, 85, 0.4);
+    border-color: #C4A86C;
 }
 
 .activity-image {
     width: 100%;
     height: 280px;
+    background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     object-fit: cover;
-    display: block;
 }
 
 .activity-card h3 {
@@ -2033,3 +1194,652 @@ nav a:hover::after {
     background-color: #7fb800;
     border: 2px solid #7fb800;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+.social-icons a svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.social-icons a:hover {
+    background-color: transparent;
+    border-color: #ffeb3b;
+    color: #ffeb3b;
+    transform: translateY(-5px);
+}
+
+.social-icons a:hover svg {
+    fill: #ffeb3b;
+}
+
+.footer {
+    background-color: #1a2f0d;
+    padding: 40px 60px;
+    text-align: center;
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.footer a {
+    color: #7fb800;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #ffeb3b;
+}
+
+/* Dropdown Navigation Styles */
+.nav-item {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-item > a {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 10px 0;
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #2d5016;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f7e6;
+    color: #7fb800;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+header nav .nav-item {
+    vertical-align: top;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+@media (max-width: 1200px) {
+    .about, .projects, .activities, .founder-section, .accommodation {
+        padding: 60px 40px;
+    }
+
+    .about-content, .founder-content {
+        gap: 50px;
+    }
+
+    .section-title h2, .accommodation-title h2, .founder-text h2 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    header {
+        padding: 15px 30px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .donate-btn {
+        padding: 10px 24px;
+        font-size: 13px;
+    }
+
+    .hero {
+        height: 500px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .about-content, .founder-content, .accommodation-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .gallery-images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .school-slider {
+        width: 90%;
+        height: 350px;
+    }
+
+    .about, .projects, .activities, .founder-section, .accommodation, .newsletter {
+        padding: 60px 30px;
+    }
+
+    .section-title h2, .accommodation-title h2 {
+        font-size: 38px;
+    }
+
+    .founder-text h2 {
+        font-size: 36px;
+    }
+
+    .accommodation-text h3 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 280px;
+        height: calc(100vh - 70px);
+        background-color: #fff;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 30px 20px;
+        gap: 20px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        transition: left 0.3s ease;
+        overflow-y: auto;
+    }
+
+    nav.active {
+        left: 0;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 15px;
+        border-left: 3px solid transparent;
+        transition: all 0.3s;
+    }
+
+    nav a:hover {
+        background-color: #f5f5f5;
+        border-left-color: #7fb800;
+        padding-left: 20px;
+    }
+
+    nav a::after {
+        display: none;
+    }
+
+    .nav-item {
+        display: block;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none;
+        background: #f9f9f9;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .nav-item:hover .dropdown-menu {
+        display: none;
+    }
+
+    .nav-item.active .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        padding: 10px 15px 10px 40px;
+        border-left: 3px solid #7fb800;
+    }
+
+    .donate-btn {
+        width: 100%;
+        text-align: center;
+        padding: 14px 20px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .hero {
+        height: 450px;
+        background-attachment: scroll;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        padding: 0 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
+        padding: 50px 20px;
+    }
+
+    .about-left h2 {
+        font-size: 24px;
+    }
+
+    .about-left p {
+        font-size: 16px;
+    }
+
+    .film-section {
+        padding: 30px 20px;
+    }
+
+    .film-section h3 {
+        font-size: 18px;
+    }
+
+    .founder-text h2 {
+        font-size: 32px;
+    }
+
+    .founder-text h3 {
+        font-size: 24px;
+    }
+
+    .founder-text p, .accommodation-text p {
+        font-size: 16px;
+    }
+
+    .section-title h2, .accommodation-title h2 {
+        font-size: 32px;
+    }
+
+    .section-title p, .accommodation-title p {
+        font-size: 16px;
+    }
+
+    .projects-grid, .projects-grid-2, .activities-grid, .activities-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-image, .activity-image {
+        height: 220px;
+    }
+
+    .primary-school {
+        padding: 40px 20px;
+    }
+
+    .primary-school h3 {
+        font-size: 22px;
+    }
+
+    .school-slider {
+        width: 100%;
+        height: 280px;
+        margin: 30px auto;
+    }
+
+    .slider-btn {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .read-more-btn, .find-out-btn {
+        padding: 14px 35px;
+        font-size: 14px;
+    }
+
+    .accommodation-text h3 {
+        font-size: 28px;
+    }
+
+    .gallery-images {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .gallery-img {
+        height: 250px;
+    }
+
+    .newsletter h3 {
+        font-size: 26px;
+    }
+
+    .newsletter p {
+        font-size: 14px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .newsletter-form input {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px 20px;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px 20px;
+    }
+
+    .social-qr {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer {
+        padding: 30px 20px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 14px;
+        gap: 8px;
+    }
+
+    .logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    header {
+        padding: 12px 15px;
+    }
+
+    nav {
+        width: 250px;
+        top: 60px;
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 2.5px;
+    }
+
+    .hero {
+        height: 350px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+        padding: 0 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .about-left h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .about-left p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .film-section {
+        padding: 20px 15px;
+    }
+
+    .film-section h3 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .film-image {
+        max-width: 100%;
+        margin: 15px auto 0;
+    }
+
+    .founder-text h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .founder-text h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .founder-text p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .section-title h2, .accommodation-title h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .section-title h2::after {
+        width: 60px;
+        height: 3px;
+        bottom: -8px;
+    }
+
+    .section-title p, .accommodation-title p {
+        font-size: 13px;
+        margin-top: 15px;
+    }
+
+    .project-card h3, .activity-card h3 {
+        font-size: 16px;
+        padding: 20px 15px 0 15px;
+    }
+
+    .project-card p {
+        font-size: 13px;
+        padding: 0 15px 20px 15px;
+    }
+
+    .project-image, .activity-image {
+        height: 180px;
+    }
+
+    .primary-school {
+        padding: 30px 15px;
+        margin: 0 -20px;
+    }
+
+    .primary-school h3 {
+        font-size: 18px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .school-slider {
+        height: 220px;
+        margin: 20px auto;
+        width: 100%;
+    }
+
+    .slider-btn {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .read-more-btn, .find-out-btn {
+        padding: 12px 25px;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+
+    .accommodation-text h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .accommodation-text p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .newsletter h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .newsletter p {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+
+    .social-icons a {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .social-icons a svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .footer {
+        padding: 25px 15px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    header {
+        padding: 10px 12px;
+    }
+
+    .logo {
+        font-size: 13px;
+        gap: 6px;
+    }
+
+    .logo img {
+        width: 35px;
+        height: 35px;
+    }
+
+    nav {
+        width: 230px;
+        padding: 20px 15px;
+        top: 55px;
+    }
+
+    .about, .projects, .activities, .founder-section, .accommodation, .newsletter, .gallery-section {
+        padding: 40px 15px;
+    }
+
+    .hero {
+        height: 320px;
+    }
+
+    .hero h1 {
+        font-size: 20px;
+    }
+
+    .section-title h2, .accommodation-title h2, .founder-text h2 {
+        font-size: 20px;
+    }
+
+    .school-slider {
+        height: 200px;
+        margin: 15px auto;
+    }
+
+    .founder-text h3 {
+        font-size: 16px;
+    }
+
+    .accommodation-text h3 {
+        font-size: 20px;
+    }
+
+    .newsletter h3 {
+        font-size: 18px;
+    }
+
+    .newsletter-form {
+        gap: 10px;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
