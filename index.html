@@ -200,29 +200,29 @@
         </div>
         <div class="activities-grid">
             <div class="activity-card">
-                <img class="activity-image" src="imgs/trad.webp" alt="Traditional cooking" style="object-fit: cover; height: 280px;">
+                <img class="activity-image" src="imgs/trad.webp" alt="Traditional cooking">
                 <h3>Traditional cooking</h3>
             </div>
             <div class="activity-card">
-                <img class="activity-image" src="imgs/basket.webp" alt="Basket weaving" style="object-fit: cover; height: 280px;">
+                <img class="activity-image" src="imgs/basket.webp" alt="Basket weaving">
                 <h3>Basket weaving</h3>
             </div>
             <div class="activity-card">
-                <img class="activity-image" src="imgs/pedal.webp" alt="Pedal sewing" style="object-fit: cover; height: 280px;">
+                <img class="activity-image" src="imgs/pedal.webp" alt="Pedal sewing">
                 <h3>Pedal sewing</h3>
             </div>
         </div>
         <div class="activities-grid-2">
             <div class="activity-card">
-                <img class="activity-image" src="imgs/bike.webp" alt="Community tours" style="object-fit: cover; height: 280px;">
+                <img class="activity-image" src="imgs/bike.webp" alt="Community tours">
                 <h3>Community tours</h3>
             </div>
             <div class="activity-card">
-                <img class="activity-image" src="imgs/dance.webp" alt="Cultural experiences" style="object-fit: cover; height: 280px;">
+                <img class="activity-image" src="imgs/dance.webp" alt="Cultural experiences">
                 <h3>Cultural experiences</h3>
             </div>
             <div class="activity-card">
-                <img class="activity-image" src="imgs/visit.webp" alt="Craft workshops" style="object-fit: cover; height: 280px;">
+                <img class="activity-image" src="imgs/visit.webp" alt="Craft workshops">
                 <h3>Visiting a woman's home</h3>
             </div>
         </div>
@@ -322,7 +322,6 @@
             }, 4000);
         }
 
-        // Scroll Animation for Project Cards
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -339,7 +338,6 @@
             });
         }, observerOptions);
 
-        // Observe all project cards
         document.addEventListener('DOMContentLoaded', () => {
             const projectCards = document.querySelectorAll('.project-card, .activity-card');
             projectCards.forEach(card => {
@@ -347,7 +345,6 @@
             });
         });
 
-        // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
         
@@ -355,9 +352,7 @@
             menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-        
 
-        // Handle dropdown clicks on mobile
         document.querySelectorAll('.nav-item > a').forEach(item => {
             item.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
@@ -367,25 +362,25 @@
                 }
             });
         });
+
         document.addEventListener('DOMContentLoaded', function() {
-    const h1Element = document.querySelector('.hero h1');
-    const fullText = h1Element.innerHTML;
-    h1Element.innerHTML = '';
-    
-    let charIndex = 0;
-    const typingSpeed = 80; // milliseconds per character
-    
-    function typeText() {
-        if (charIndex < fullText.length) {
-            h1Element.innerHTML = fullText.substring(0, charIndex + 1);
-            charIndex++;
-            setTimeout(typeText, typingSpeed);
-        }
-    }
-    
-    // Start typing animation
-    typeText();
-});
+            const h1Element = document.querySelector('.hero h1');
+            const fullText = h1Element.innerHTML;
+            h1Element.innerHTML = '';
+            
+            let charIndex = 0;
+            const typingSpeed = 80;
+            
+            function typeText() {
+                if (charIndex < fullText.length) {
+                    h1Element.innerHTML = fullText.substring(0, charIndex + 1);
+                    charIndex++;
+                    setTimeout(typeText, typingSpeed);
+                }
+            }
+            
+            typeText();
+        });
     </script>
 </body>
 </html>
