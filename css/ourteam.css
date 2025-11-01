@@ -1,0 +1,806 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header & Navigation */
+header {
+    background-color: #fff;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.8s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #2d5016;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #2d5016;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+    position: relative;
+}
+
+nav a:hover {
+    color: #7fb800;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #7fb800;
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.donate-btn {
+    border: 2px solid #7fb800;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: #7fb800;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+.donate-btn:hover {
+    background-color: #6a9d00;
+    border-color: #6a9d00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+}
+
+/* Dropdown Navigation Styles */
+.nav-item {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-item > a {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 10px 0;
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #2d5016;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f7e6;
+    color: #7fb800;
+}
+
+.dropdown-menu a::after {
+    display: none;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+header nav .nav-item {
+    vertical-align: top;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('../imgs/film+image.webp');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.03) 10px,
+        rgba(255, 255, 255, 0.03) 20px
+    );
+    animation: slidePattern 20s linear infinite;
+}
+
+@keyframes slidePattern {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In Observer */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Team Introduction */
+.team-intro {
+    padding: 80px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.team-intro h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #7fb800;
+    position: relative;
+    display: inline-block;
+}
+
+.team-intro h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #7fb800, #ffeb3b);
+    border-radius: 2px;
+}
+
+.team-intro p {
+    font-size: 18px;
+    line-height: 1.9;
+    color: #4a4a4a;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+/* Leadership Section */
+.leadership-section {
+    padding: 80px 60px;
+    background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: #2d5016;
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.team-member {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+}
+
+/* Special animation for Evelyne (first team member) */
+.team-member:first-child {
+    animation: flyInFromLeft 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes flyInFromLeft {
+    0% {
+        transform: translateX(-100vw) rotate(-15deg);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(20px) rotate(5deg);
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(-10px) rotate(-2deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(127, 184, 0, 0.3);
+}
+
+.member-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-member:hover .member-image {
+    transform: scale(1.05);
+}
+
+.member-info {
+    padding: 30px;
+}
+
+.member-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #7fb800;
+    margin-bottom: 8px;
+}
+
+.member-role {
+    font-size: 16px;
+    color: #7fb800;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.member-bio {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+}
+
+/* Staff Section */
+.staff-section {
+    padding: 80px 60px;
+    background: white;
+}
+
+/* Staff Photos */
+.staff-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.staff-photo-container {
+    text-align: center;
+}
+
+.staff-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+
+.staff-photo:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(127, 184, 0, 0.3);
+}
+
+.staff-caption {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #2d5016;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Join Team CTA */
+.join-cta {
+    padding: 100px 60px;
+    background: linear-gradient(135deg, #2d5016, #4a7022);
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.join-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(127, 184, 0, 0.1);
+    border-radius: 50%;
+}
+
+.join-cta h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.join-cta p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-btn {
+    padding: 18px 50px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-btn-primary {
+    background: #ffeb3b;
+    color: #2d5016;
+}
+
+.cta-btn-primary:hover {
+    background: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 235, 59, 0.4);
+}
+
+.cta-btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-btn-secondary:hover {
+    background: white;
+    color: #2d5016;
+    transform: translateY(-2px);
+}
+
+/* Newsletter */
+.newsletter {
+    padding: 80px 60px;
+    background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+    text-align: center;
+}
+
+.newsletter h3 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #2d5016;
+}
+
+.newsletter p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #4a4a4a;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+}
+
+.newsletter-form input {
+    padding: 18px 30px;
+    border: 2px solid #7fb800;
+    border-radius: 50px;
+    width: 400px;
+    max-width: 100%;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(127, 184, 0, 0.3);
+    transform: scale(1.02);
+}
+
+.newsletter-form button {
+    padding: 18px 50px;
+    border: none;
+    background-color: #7fb800;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    transition: all 0.3s;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.newsletter-form button:hover {
+    background-color: #6a9d00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(127, 184, 0, 0.4);
+}
+
+/* Footer */
+.footer {
+    background-color: #1a2f0d;
+    padding: 40px 60px;
+    text-align: center;
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.footer a {
+    color: #7fb800;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #ffeb3b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background-color: white;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        transition: left 0.3s ease;
+        align-items: flex-start;
+        gap: 20px;
+        overflow-y: auto;
+    }
+
+    nav.active {
+        left: 0;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    nav a::after {
+        display: none;
+    }
+
+    .donate-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Mobile Dropdown Styles */
+    .nav-item {
+        display: block;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none;
+        background: #f9f9f9;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .nav-item:hover .dropdown-menu {
+        display: none;
+    }
+
+    .nav-item.active .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        padding: 10px 15px 10px 40px;
+        border-left: 3px solid #7fb800;
+    }
+
+    .hero {
+        height: 400px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+        padding: 0 20px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+
+    .team-intro,
+    .leadership-section,
+    .staff-section,
+    .join-cta,
+    .newsletter {
+        padding: 50px 20px;
+    }
+
+    .team-intro h2,
+    .section-title {
+        font-size: 28px;
+    }
+
+    .leadership-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .staff-photos {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-btn {
+        width: 100%;
+    }
+
+    .newsletter h3 {
+        font-size: 28px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+    }
+
+    .footer {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 16px;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .hero {
+        height: 300px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .team-intro h2,
+    .section-title {
+        font-size: 24px;
+    }
+
+    .team-intro p,
+    .member-bio {
+        font-size: 15px;
+    }
+
+    .join-cta h2 {
+        font-size: 28px;
+    }
+
+    .newsletter h3 {
+        font-size: 24px;
+    }
+
+    .staff-photos {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
