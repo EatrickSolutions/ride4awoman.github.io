@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Ride 4 a Woman</title>
+    <link rel="stylesheet" href="css/bakiga.css">
+    <style>
+        .donate-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7022" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donate-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            animation: slidePattern 20s linear infinite;
+        }
+
+        .donate-hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+            padding: 0 20px;
+        }
+
+        .donate-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 15px;
+        }
+
+        .donate-hero p {
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+
+        .impact-section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .impact-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+        }
+
+        .impact-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+        }
+
+        .impact-section > p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .donation-methods {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+        }
+
+        .methods-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .methods-container h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .methods-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+        }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .method-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .method-card:nth-child(1) { animation-delay: 0.1s; }
+        .method-card:nth-child(2) { animation-delay: 0.2s; }
+        .method-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .method-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .method-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7fb800, #4a7022);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .method-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .method-details p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
+        .method-details strong {
+            color: #2d5016;
+            font-weight: 700;
+        }
+
+        .donate-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 40px;
+            background: #7fb800;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        .donate-button:hover {
+            background: #6a9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+        }
+
+        .notification-section {
+            padding: 60px 60px;
+            background: white;
+            text-align: center;
+        }
+
+        .notification-box {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+            border-radius: 15px;
+            border-left: 5px solid #7fb800;
+        }
+
+        .notification-box h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+
+        .notification-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+        }
+
+        .notify-button {
+            display: inline-block;
+            padding: 15px 50px;
+            background: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .notify-button:hover {
+            background: #2d5016;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(45, 80, 22, 0.3);
+        }
+
+        .gofundme-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .gofundme-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .donate-hero h1 {
+                font-size: 36px;
+            }
+
+            .impact-section,
+            .donation-methods,
+            .notification-section {
+                padding: 60px 20px;
+            }
+
+            .methods-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .method-card {
+                padding: 30px 20px;
+            }
+
+            .notification-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="nav">
+            <div class="nav-item">
+                <a href="index.html">ABOUT US</a>
+            </div>
+            <div class="nav-item">
+                <a>PROJECTS</a>
+            </div>
+            <div class="nav-item">
+                <a>ACTIVITIES</a>
+            </div>
+            <div class="nav-item">
+                <a>STAY WITH US</a>
+            </div>
+            <div class="nav-item">
+                <a>THE SHOP</a>
+            </div>
+            <div class="nav-item">
+                <a>COLLABORATE</a>
+            </div>
+            <div class="nav-item">
+                <a href="#contact">CONTACT</a>
+            </div>
+            <button class="donate-btn" onclick="scrollToDonate()">DONATE</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="donate-hero">
+        <div class="donate-hero-content">
+            <h1>Donate</h1>
+            <p>Thank you for empowering women in Bwindi</p>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <h2>Your support is both needed & appreciated</h2>
+        <p>While our handmade products and accommodation sales do a good job of covering our basic costs, we rely on donations from individuals and organizations to take our projects to new levels and to keep working towards the fulfillment of our vision.</p>
+        <p>All your donations are exclusively used to make possible the projects of Ride 4 A Woman. We are extremely grateful for all your support.</p>
+    </section>
+
+    <!-- Donation Methods Section -->
+    <section class="donation-methods" id="donate">
+        <div class="background-slider">
+            <div class="slider-image active" style="background-image: url('imgs/agri.webp');"></div>
+            <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1600&q=80');"></div>
+            <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600&q=80');"></div>
+            <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1600&q=80');"></div>
+            <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1600&q=80');"></div>
+        </div>
+        <div class="methods-container">
+            <h2>Make an impact today</h2>
+            <p style="text-align: center; font-size: 18px; color: #2c3e50; margin-bottom: 50px; position: relative; z-index: 2; font-weight: 600;">Empower women by contributing a donation.</p>
+            
+            <div class="methods-grid">
+                <!-- Bank Transfer Card -->
+                <div class="method-card">
+                    <div class="method-icon">🏦</div>
+                    <h3>Bank Transfer</h3>
+                    <div class="method-details">
+                        <p><strong>RIDE FOR A WOMAN</strong><br>(STANBIC UGANDA)</p>
+                        <p><strong>Account No:</strong> 9030009579353</p>
+                        <p><strong>Branch:</strong> Kihihi</p>
+                        <p><strong>Swift code:</strong> SBICUGKX</p>
+                        <p><strong>Bank address:</strong> Plot 63, block 74, Balagaine street</p>
+                        <p style="margin-top: 20px; font-size: 14px; font-style: italic;">Email: ride4awoman@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- USA Corporation Card -->
+                <div class="method-card">
+                    <div class="method-icon">🇺🇸</div>
+                    <h3>Ride 4 a Woman Corporation, USA</h3>
+                    <div class="method-details">
+                        <p>Charitable USA 501(c)(3) organization. Supporting the women and the children of the Bwindi Community.</p>
+                        <p style="margin-top: 20px;"><strong>We accept donations only</strong> (please, do not use it to purchase our products).</p>
+                        <p>You can donate no matter the country where you live.</p>
+                        <p>You can make a one-time, monthly or annually donation.</p>
+                        <p style="margin-top: 20px; font-weight: 600;">Thank you.</p>
+                        <p style="font-size: 14px; font-style: italic;">ride4awomanUSA@gmail.com</p>
+                        <p style="margin-top: 20px;"><strong>For checks, please send to:</strong><br>
+                        Ride4aWoman USA<br>
+                        2001 Jasmine Circle<br>
+                        Cedar Hill, TX 75104</p>
+                        <p style="margin-top: 20px;"><strong>For donations via Zelle send to:</strong><br>
+                        debbie.latham417@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- GoFundMe Card -->
+                <div class="method-card">
+                    <div class="method-icon">💚</div>
+                    <h3>GoFundMe</h3>
+                    <div class="gofundme-section">
+                        <svg viewBox="0 0 200 60" class="gofundme-logo">
+                            <text x="10" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#00B964">GoFundMe</text>
+                        </svg>
+                        <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin-bottom: 20px;">Support our mission through our GoFundMe campaign. Every contribution makes a difference in empowering women in the Bwindi community.</p>
+                        <a href="#" class="donate-button">Donate on GoFundMe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification Section -->
+    <section class="notification-section">
+        <div class="notification-box">
+            <h3>💌 Let Us Know!</h3>
+            <p>Please let us know about your donation so we can thank you accordingly.</p>
+            <a href="mailto:ride4awoman@gmail.com?subject=Donation%20Notification" class="notify-button">Donation Notification</a>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <p class="newsletter-privacy">We respect your <a href="#">privacy</a></p>
+        
+        <form class="newsletter-form" onsubmit="return false;">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">SIGN UP</button>
+        </form>
+
+        <div class="social-qr">
+            <div class="social-icons">
+                <a href="#" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                    </svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="qr-container">
+                <div class="qr-code">
+                    <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+                        <rect width="100" height="100" fill="white"/>
+                        <rect x="10" y="10" width="30" height="30" fill="black"/>
+                        <rect x="60" y="10" width="30" height="30" fill="black"/>
+                        <rect x="10" y="60" width="30" height="30" fill="black"/>
+                        <rect x="15" y="15" width="20" height="20" fill="white"/>
+                        <rect x="65" y="15" width="20" height="20" fill="white"/>
+                        <rect x="15" y="65" width="20" height="20" fill="white"/>
+                    </svg>
+                </div>
+                <div style="color: white; font-size: 14px;">
+                    <strong>Scan to Visit</strong><br>
+                    Our Website
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright at Ride 4 a Woman | <a href="#">Privacy</a></p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            const toggle = document.querySelector('.menu-toggle');
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Smooth scroll to donate section
+        function scrollToDonate() {
+            document.getElementById('donate').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll animations
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.content-section, .details-section, .testimonial-section, .gallery-section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Background Image Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-image');
+        const totalSlides = slides.length;
+
+        function changeSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 5 seconds
+        setInterval(changeSlide, 5000);
+    </script>
+</body>
+</html>

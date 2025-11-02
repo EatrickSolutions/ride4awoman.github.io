@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primary School - Ride 4 A Woman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation - Matching index.html */
+        header {
+            background-color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d5016;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #2d5016;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #7fb800;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #7fb800;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2c3e50;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #7fb800;
+            padding-left: 25px;
+        }
+
+        .donate-btn {
+            border: 2px solid #7fb800;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #7fb800;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            background-color: #6a9d00;
+            border-color: #6a9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(45, 80, 22, 0.7), rgba(45, 80, 22, 0.7)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7022" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            animation: slidePattern 20s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            animation: fadeInScale 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Dream Section */
+        .dream-section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .dream-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dream-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dream-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        .dream-section.visible h2::after {
+            width: 120px;
+        }
+
+        .dream-section p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            color: #4a4a4a;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+            text-align: justify;
+        }
+
+        .dream-section.visible p {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .dream-section p:nth-child(2) { transition-delay: 0.1s; }
+        .dream-section p:nth-child(3) { transition-delay: 0.2s; }
+        .dream-section p:nth-child(4) { transition-delay: 0.3s; }
+
+        .highlight-text {
+            font-weight: 700;
+            color: #2d5016;
+        }
+
+        /* Focus Points Section */
+        .focus-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .focus-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .focus-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .focus-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d5016;
+            text-align: center;
+        }
+
+        .focus-intro {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 50px;
+            color: #4a4a4a;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .focus-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #7fb800;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .focus-section.visible .focus-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .focus-section.visible .focus-card:nth-child(1) { transition-delay: 0.1s; }
+        .focus-section.visible .focus-card:nth-child(2) { transition-delay: 0.2s; }
+        .focus-section.visible .focus-card:nth-child(3) { transition-delay: 0.3s; }
+        .focus-section.visible .focus-card:nth-child(4) { transition-delay: 0.4s; }
+        .focus-section.visible .focus-card:nth-child(5) { transition-delay: 0.5s; }
+
+        .focus-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(127, 184, 0, 0.3);
+        }
+
+        .focus-card h3 {
+            font-size: 22px;
+            color: #7fb800;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .focus-card p {
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.8;
+        }
+
+        /* SDG Quote Section */
+        .sdg-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #2d5016, #4a7022);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .sdg-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sdg-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(127, 184, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .sdg-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 350px;
+            height: 350px;
+            background: rgba(127, 184, 0, 0.08);
+            border-radius: 50%;
+        }
+
+        .sdg-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sdg-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #ffeb3b;
+            animation: fadeIn 1s ease;
+        }
+
+        .sdg-quote {
+            font-size: 20px;
+            font-style: italic;
+            line-height: 1.9;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border-left: 5px solid #ffeb3b;
+            animation: slideInUp 1s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Progress Section */
+        .progress-section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .progress-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progress-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #7fb800;
+            text-align: center;
+        }
+
+        .progress-section p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            color: #4a4a4a;
+            text-align: justify;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .progress-section.visible p:nth-child(2) { animation-delay: 0.2s; }
+        .progress-section.visible p:nth-child(3) { animation-delay: 0.4s; }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .cta-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2d5016;
+            animation: fadeInScale 1s ease;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 40px;
+            color: #4a4a4a;
+            animation: fadeIn 1s ease;
+            animation-delay: 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #2d5016;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(45, 80, 22, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 30px rgba(45, 80, 22, 0.5);
+            }
+        }
+
+        .cta-btn:hover {
+            background: #7fb800;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(127, 184, 0, 0.5);
+            animation: none;
+        }
+
+        /* Newsletter Section - Matching the image */
+        .newsletter {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter h3 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter > p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-privacy {
+            font-size: 13px;
+            color: #e0e0e0;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-privacy a {
+            color: #ffeb3b;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form input {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 400px;
+            max-width: 100%;
+            font-size: 15px;
+            background: white;
+        }
+
+        .newsletter-form button {
+            padding: 18px 50px;
+            border: none;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 235, 59, 0.4);
+        }
+
+        .social-qr {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icons a svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+        }
+
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #2d5016;
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        /* Footer - Matching the image */
+        .footer {
+            background-color: #1a2f0d;
+            padding: 30px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #b8c77d;
+        }
+
+        .footer a {
+            color: #b8c77d;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                align-items: flex-start;
+                gap: 20px;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding: 5px 0 5px 15px;
+                margin-top: 5px;
+                background-color: #f9f9f9;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+
+            .donate-btn {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .dream-section,
+            .focus-section,
+            .sdg-section,
+            .progress-section,
+            .cta-section,
+            .newsletter {
+                padding: 60px 20px;
+            }
+
+            .dream-section h2,
+            .focus-section h2,
+            .progress-section h2,
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            .social-qr {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Matching index.html -->
+    <header>
+        <div class="logo">
+            <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navMenu">
+            <div class="nav-item">
+                <a>ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="aboutus.html">OUR STORY</a>
+                    <a href="ourteam.html">MEET OUR TEAM</a>
+                    <a href="inspiringstoring.html">INSPIRING STORIES</a>
+                    <a href="sustainbility.html">SUSTAINABILITY</a>
+                    <a href="news.html">NEWSLETTERS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>PROJECTS</a>
+                <div class="dropdown-menu">
+                    <a href="employ.html">EMPLOYING WOMEN</a>
+                    <a href="microfinace.html">MICROFINANCE</a>
+                    <a href="school.html">PRIMARY SCHOOL</a>
+                    <a href="#">CHILDREN SPONSORSHIP</a>
+                    <a href="#">SAFE WATER</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>ACTIVITIES</a>
+                <div class="dropdown-menu">
+                    <a href="#">TRADITIONAL COOKING</a>
+                    <a href="#">BASKET WEAVING</a>
+                    <a href="#">PEDAL SEWING</a>
+                    <a href="#">BAKIGA DANCE</a>
+                    <a href="#">BIKING COMMUNITY TOUR</a>
+                    <a href="#">VISITING A WOMAN'S HOME</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>STAY WITH US</a>
+                <div class="dropdown-menu">
+                    <a href="#">ACCOMMODATION</a>
+                    <a href="#">RESTAURANT</a>
+                    <a href="#">ENGAGI CAFE</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>THE SHOP</a>
+                <div class="dropdown-menu">
+                    <a href="#">OUR HANDMADE PRODUCTS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>COLLABORATE</a>
+                <div class="dropdown-menu">
+                    <a href="#">DONATE</a>
+                    <a href="#">VOLUNTEER</a>
+                </div>
+            </div>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Primary school</h1>
+        </div>
+    </section>
+
+    <!-- Dream Section -->
+    <section class="dream-section">
+        <h2>Our dream for the community</h2>
+        <p>Horeb Primary School project is the biggest Ride 4 A Woman's dream. It is both a dream and a necessity for our community, as there are still many children without proper access to education. We believe that there is no better investment than education to make a difference in people's lives and to continue empowering women.</p>
+        
+        <p>Ride 4 A Woman program on Child Sponsorship is currently covering the education of over 270 children in different primary and secondary schools of Bwindi. However, there are still many more children not going to school due to lack of economic resources in their homes. Having all these sponsored children in a school directly managed by Ride 4 A Woman would be ideal, because it would require less economic resources per kid. But it is not only about money and resources. We firmly believe that <span class="highlight-text">a new type of school is possible</span>. Besides the standard educational curriculum, which is undoubtedly important, there is the need to engage the students differently, so education goes one step forward.</p>
+    </section>
+
+    <!-- Focus Section -->
+    <section class="focus-section">
+        <div class="focus-content">
+            <h2>For us, one step forward education means:</h2>
+            <p class="focus-intro">Our vision encompasses five key pillars that will transform traditional education:</p>
+            
+            <div class="focus-grid">
+                <div class="focus-card">
+                    <h3>Diversity and Inclusion</h3>
+                    <p>No kid without school, including children with mental and physical disabilities. Every child deserves equal access to quality education.</p>
+                </div>
+                
+                <div class="focus-card">
+                    <h3>Project Management</h3>
+                    <p>Educate through project management and hands-on skills. Learning by doing creates lasting knowledge and practical capabilities.</p>
+                </div>
+                
+                <div class="focus-card">
+                    <h3>Environmental Conservation</h3>
+                    <p>Environment and wildlife conservation and sustainability. Teaching children to be stewards of our planet and its precious ecosystems.</p>
+                </div>
+                
+                <div class="focus-card">
+                    <h3>Digitalization</h3>
+                    <p>Preparing students for the digital future through technology integration and modern learning tools.</p>
+                </div>
+                
+                <div class="focus-card">
+                    <h3>Joy and Love</h3>
+                    <p>Educate through love and fun, making school a space of joy where children thrive emotionally and academically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDG Section -->
+    <section class="sdg-section">
+        <div class="sdg-content">
+            <h3>Aligning with UN Sustainable Development Goals</h3>
+            <div class="sdg-quote">
+                "By 2030, ensure that all learners acquire the knowledge and skills needed to promote sustainable development, including, among others, through education for sustainable development and sustainable lifestyles, human rights, gender equality, promotion of a culture of peace and non-violence, global citizenship and appreciation of cultural diversity and of culture's contribution to sustainable development."
+            </div>
+            <p style="margin-top: 20px; font-size: 16px; opacity: 0.9;">- SDG 4.7 Target on Quality Education</p>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section">
+        <h2>Our Progress</h2>
+        <p>Ride 4 a Woman already possesses the land in which it is expected to construct the school. We are in the process of getting the drawings, designs and budget from an architecture studio in Kampala. Once this is done, Ride 4 a Woman will start fundraising the needed investments to start the construction.</p>
+        
+        <p>If you want to know more details about the project, please let us know.</p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Help Us Build This Dream</h2>
+            <p>Your support can help us create a school that will transform the lives of hundreds of children and strengthen our entire community for generations to come.</p>
+            <a href="donate.html" class="cta-btn">Make a Donation</a>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <div class="newsletter-privacy">We respect your <a href="#">privacy</a></div>
+        
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        <div class="social-qr">
+            <div class="social-icons">
+                <a href="#" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="#" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="qr-container">
+                <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo" style="width: 80px; height: 80px; border-radius: 50%;">
+                <div class="qr-code">QR CODE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#">Privacy</a></p>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated sections
+        document.querySelectorAll('.dream-section, .focus-section, .sdg-section, .progress-section, .cta-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay With Us - Ride 4 a Woman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d5016;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #2d5016;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2c3e50;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #7fb800;
+            padding-left: 25px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #7fb800;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #7fb800;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .donate-btn {
+            border: 2px solid #7fb800;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #7fb800;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            background-color: #6a9d00;
+            border-color: #6a9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(45, 80, 22, 0.4), rgba(45, 80, 22, 0.4)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            animation: slidePattern 20s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            animation: fadeInScale 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .welcome-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .welcome-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+        }
+
+        .welcome-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        .welcome-section.visible h2::after {
+            width: 120px;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 30px;
+            color: #4a4a4a;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #2c3e50;
+            transition: all 0.3s;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #2c3e50;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(44, 62, 80, 0.3);
+        }
+
+        /* Giving Back Section */
+        .giving-back {
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+            padding: 80px 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .giving-back.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .giving-back-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .giving-back h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .giving-back p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        .highlight-text {
+            font-weight: 600;
+            font-style: italic;
+            color: #2d5016;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        /* Gallery Carousel */
+        .gallery-section {
+            padding: 80px 60px;
+            background: white;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .gallery-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #7fb800;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .gallery-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        .gallery-section.visible h2::after {
+            width: 120px;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 600px;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(127, 184, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+            transition: all 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-button:hover {
+            background: #7fb800;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-button.prev {
+            left: 20px;
+        }
+
+        .carousel-button.next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #7fb800;
+            transform: scale(1.3);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            aspect-ratio: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(127, 184, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Gallery Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10001;
+        }
+
+        .modal-close:hover {
+            color: #7fb800;
+            transform: scale(1.2);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(127, 184, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 30px;
+            z-index: 10001;
+            transition: all 0.3s;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-nav:hover {
+            background: #7fb800;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: 30px;
+        }
+
+        .modal-next {
+            right: 30px;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .features-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #7fb800;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .features-section.visible .feature-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-section.visible .feature-card:nth-child(1) { transition-delay: 0.2s; }
+        .features-section.visible .feature-card:nth-child(2) { transition-delay: 0.4s; }
+        .features-section.visible .feature-card:nth-child(3) { transition-delay: 0.6s; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(127, 184, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2d5016;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Newsletter */
+         .newsletter {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter::after {
+            display: none;
+        }
+
+       .newsletter h3 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            animation: slideInUp 1s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .newsletter-form input {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 400px;
+            max-width: 100%;
+            font-size: 15px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(255, 235, 59, 0.4);
+            transform: scale(1.02);
+        }
+
+        .newsletter-form button {
+            padding: 18px 50px;
+            border: none;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 235, 59, 0.4);
+        }
+
+        .social-qr {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            margin: 60px 0 20px 0;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-icons a svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+            fill: none;
+        }
+
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .qr-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #2d5016;
+            font-weight: 600;
+            padding: 10px;
+        }
+.qr-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+         /* Footer */
+        .footer {
+            background-color: #1a2f0d;
+            padding: 30px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #b8c77d;
+        }
+
+        .footer a {
+            color: #b8c77d;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                align-items: flex-start;
+                gap: 20px;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-item > a {
+                width: 100%;
+                padding: 10px 0;
+                font-size: 16px;
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding: 5px 0 5px 15px;
+                margin-top: 5px;
+                background-color: #f9f9f9;
+                border-radius: 5px;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            .dropdown-menu a:hover {
+                padding-left: 20px;
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            .donate-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                padding: 0 20px;
+            }
+
+            .welcome-section,
+            .giving-back,
+            .gallery-section,
+            .features-section,
+            .newsletter {
+                padding: 50px 20px;
+            }
+
+            .welcome-section h2,
+            .gallery-section h2 {
+                font-size: 28px;
+            }
+
+            .carousel-slide {
+                height: 400px;
+            }
+
+            .carousel-button {
+                padding: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .social-qr {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .modal-close {
+                top: 15px;
+                right: 20px;
+                font-size: 40px;
+            }
+
+            .modal-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navMenu">
+            <div class="nav-item">
+                <a>ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="aboutus.html">OUR STORY</a>
+                    <a href="ourteam.html">MEET OUR TEAM</a>
+                    <a href="inspiringstoring.html">INSPIRING STORIES</a>
+                    <a href="sustainbility.html">SUSTAINABILITY</a>
+                    <a href="news.html">NEWSLETTERS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#projects">PROJECTS</a>
+                <div class="dropdown-menu">
+                    <a href="employ.html">EMPLOYING WOMEN</a>
+                    <a href="microfinace.html">MICROFINANCE</a>
+                    <a href="#our-story">CHILDREN SPONSORSHIP</a>
+                    <a href="#our-story">SAFE WATER</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#activities">ACTIVITIES</a>
+                <div class="dropdown-menu">
+                    <a href="#our-story">TRADITIONAL COOKING</a>
+                    <a href="#meet-team">BASKET WEAVING</a>
+                    <a href="#our-story">PEDAL SEWING</a>
+                    <a href="#our-story">BAKIGA DANCE</a>
+                    <a href="#our-story">BIKING COMMUNITY TOUR</a>
+                    <a href="#our-story">VISITING A WOMAN'S HOME</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#stay">STAY WITH US</a>
+                <div class="dropdown-menu">
+                    <a href="accommodation.html">ACCOMMODATION</a>
+                    <a href="#meet-team">RESTAURANT</a>
+                    <a href="#meet-team">ENGAGI CAFE</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#shop">THE SHOP</a>
+                <div class="dropdown-menu">
+                    <a href="#our-story">OUR HANDMADE PRODUCTS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#collaborate">COLLABORATE</a>
+                <div class="dropdown-menu">
+                    <a href="#Donate">DONATE</a>
+                    <a href="#Volunteer">VOLUNTEER</a>
+                </div>
+            </div>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Stay with us</h1>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <h2>You are most welcome in Bwindi</h2>
+        <p>If you are looking for guesthouse accommodation offering an authentic Ugandan experience within close proximity to Bwindi's gorilla trekking headquarters, then look no further.</p>
+        <p>Come and stay with us!</p>
+        <a href="#contact" class="cta-button">RESERVATION ENQUIRIES</a>
+        <p style="margin-top: 40px;">You will be warmly welcomed by our team and offered hot towels and fresh passion juice before being shown to your accommodation in our guesthouse.</p>
+        <p>During your stay you will also have the opportunity to enjoy local food in our restaurant.</p>
+    </section>
+
+    <!-- Giving Back Section -->
+    <section class="giving-back">
+        <div class="giving-back-content">
+            <h2>When you stay with us you are giving back...</h2>
+            <p>The income generated from our clients is used to support the women and families of Bwindi through the creation of jobs, the opportunity to gain new skills, the provision of safe drinking water for all the community, installing solar panels in houses without electricity and providing access to microcredit for local business development, among other projects.</p>
+            <p class="highlight-text">So, when you stay with us you are giving back to a whole community, helping to drive the local economy and supporting the progress of women and their families in Uganda.</p>
+            <p class="highlight-text">Thank you for making it possible.</p>
+            <a href="#contact" class="cta-button">RESERVATION ENQUIRIES</a>
+        </div>
+    </section>
+
+    <!-- Gallery Carousel -->
+    <section class="gallery-section">
+        <h2>Our Accommodation</h2>
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200" alt="Guesthouse exterior">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200" alt="Comfortable room">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200" alt="Cozy bedroom">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200" alt="Beautiful garden">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1200" alt="Relaxation area">
+                </div>
+            </div>
+            <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+        <div class="carousel-indicators" id="indicators"></div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openGalleryModal(0)">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600" alt="Guesthouse exterior">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(1)">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600" alt="Comfortable room">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(2)">
+                <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600" alt="Cozy bedroom">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(3)">
+                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600" alt="Beautiful garden">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(4)">
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600" alt="Relaxation area">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(5)">
+                <img src="https://images.unsplash.com/photo-1566073971259-6a8506099945?w=600" alt="Reception area">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(6)">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600" alt="Outdoor seating">
+            </div>
+            <div class="gallery-item" onclick="openGalleryModal(7)">
+                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600" alt="Bedroom detail">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="gallery-modal">
+        <span class="modal-close" onclick="closeGalleryModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <button class="modal-nav modal-prev" onclick="changeModalImage(-1)">&#10094;</button>
+        <button class="modal-nav modal-next" onclick="changeModalImage(1)">&#10095;</button>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏡</div>
+                <h3>Authentic Experience</h3>
+                <p>Immerse yourself in genuine Ugandan hospitality and culture in our locally-run guesthouse.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🦍</div>
+                <h3>Perfect Location</h3>
+                <p>Just minutes away from Bwindi's gorilla trekking headquarters, ideal for your adventure.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🍽️</div>
+                <h3>Local Cuisine</h3>
+                <p>Enjoy delicious, authentic Ugandan meals prepared with fresh local ingredients in our restaurant.</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <div class="newsletter-privacy">We respect your <a href="#">privacy</a></div>
+        
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        <div class="social-qr">
+            <div class="social-icons">
+                <a href="#" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="#" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="qr-container">
+                <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo" style="width: 80px; height: 80px; border-radius: 50%;">
+                <div class="qr-code">QR CODE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#">Privacy</a></p>
+    </footer>
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.welcome-section, .giving-back, .gallery-section, .features-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        // Create indicators
+        slides.forEach((_, index) => {
+            const indicator = document.createElement('button');
+            indicator.classList.add('indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorsContainer.appendChild(indicator);
+        });
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Mobile dropdown toggle
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Gallery Modal functionality
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200',
+            'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200',
+            'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200',
+            'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200',
+            'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1200',
+            'https://images.unsplash.com/photo-1566073971259-6a8506099945?w=1200',
+            'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200',
+            'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200'
+        ];
+
+        let currentModalImage = 0;
+
+        function openGalleryModal(index) {
+            currentModalImage = index;
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = galleryImages[currentModalImage];
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeModalImage(direction) {
+            currentModalImage += direction;
+            if (currentModalImage < 0) currentModalImage = galleryImages.length - 1;
+            if (currentModalImage >= galleryImages.length) currentModalImage = 0;
+            
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = galleryImages[currentModalImage];
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGalleryModal();
+            }
+            if (e.key === 'ArrowLeft') {
+                changeModalImage(-1);
+            }
+            if (e.key === 'ArrowRight') {
+                changeModalImage(1);
+            }
+        });
+
+        // Close modal when clicking outside image
+        document.getElementById('galleryModal').addEventListener('click', (e) => {
+            if (e.target.id === 'galleryModal') {
+                closeGalleryModal();
+            }
+        });
+    </script>
+</body>
+</html>

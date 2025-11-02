@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shop - Our Handmade Products | Ride 4 a Woman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d5016;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #2d5016;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #2d5016;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #7fb800;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2c3e50;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #7fb800;
+            padding-left: 25px;
+        }
+
+        .donate-btn {
+            border: 2px solid #7fb800;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #7fb800;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            background-color: #6a9d00;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+        }
+
+        /* Content Sections */
+        .explore-section {
+            padding: 80px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .explore-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .explore-section p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(127, 184, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .product-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #7fb800, #4a7022);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-placeholder small {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 22px;
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-info p {
+            font-size: 18px;
+            color: #7fb800;
+            font-weight: 600;
+        }
+
+        /* Enquire Section */
+        .enquire-section {
+            padding: 80px 60px;
+            text-align: center;
+            background: white;
+        }
+
+        .enquire-section p {
+            font-size: 16px;
+            color: #666;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .enquire-btn {
+            padding: 18px 60px;
+            background: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 5px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .enquire-btn:hover {
+            background: #2d5016;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h3 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .newsletter > p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .newsletter-form input {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 400px;
+            max-width: 100%;
+            font-size: 15px;
+        }
+
+        .newsletter-form button {
+            padding: 18px 50px;
+            border: none;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a2f0d;
+            padding: 30px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #b8c77d;
+        }
+
+        .footer a {
+            color: #b8c77d;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                align-items: flex-start;
+                gap: 20px;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding: 5px 0 5px 15px;
+                margin-top: 5px;
+                background-color: #f9f9f9;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+
+            .donate-btn {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .explore-section,
+            .products-section,
+            .enquire-section,
+            .newsletter {
+                padding: 60px 20px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-circle">R4W</div>
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navMenu">
+            <div class="nav-item">
+                <a>ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="aboutus.html">OUR STORY</a>
+                    <a href="ourteam.html">MEET OUR TEAM</a>
+                    <a href="inspiringstoring.html">INSPIRING STORIES</a>
+                    <a href="sustainbility.html">SUSTAINABILITY</a>
+                    <a href="news.html">NEWSLETTERS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>PROJECTS</a>
+                <div class="dropdown-menu">
+                    <a href="employ.html">EMPLOYING WOMEN</a>
+                    <a href="microfinace.html">MICROFINANCE</a>
+                    <a href="#">CHILDREN SPONSORSHIP</a>
+                    <a href="#">SAFE WATER</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>ACTIVITIES</a>
+                <div class="dropdown-menu">
+                    <a href="#">TRADITIONAL COOKING</a>
+                    <a href="#">BASKET WEAVING</a>
+                    <a href="#">PEDAL SEWING</a>
+                    <a href="#">BAKIGA DANCE</a>
+                    <a href="#">BIKING COMMUNITY TOUR</a>
+                    <a href="#">VISITING A WOMAN'S HOME</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>STAY WITH US</a>
+                <div class="dropdown-menu">
+                    <a href="#">ACCOMMODATION</a>
+                    <a href="#">RESTAURANT</a>
+                    <a href="engagicafe.html">ENGAGI CAFE</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>THE SHOP</a>
+                <div class="dropdown-menu">
+                    <a href="shop.html">OUR HANDMADE PRODUCTS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>COLLABORATE</a>
+                <div class="dropdown-menu">
+                    <a href="#">DONATE</a>
+                    <a href="#">VOLUNTEER</a>
+                </div>
+            </div>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Our handmade products</h1>
+    </section>
+
+    <section class="explore-section">
+        <h2>Explore our shop</h2>
+        <p>Here at Ride 4 a Woman we employ a team of women from the Bwindi community, trained to pedal sew and basket weave a broad range of fabric and basket products which we sell in our shop on site.</p>
+        
+        <p>From dining table furnishings and cushion covers, hair accessories, computer and iPad cases to purses and handbags, all products are to the highest standard giving you lightweight, quality gifts to take home to friends and family.</p>
+        
+        <p>We are also expert basket weavers, innovating and exploring with design and shape every day and offering large to small decorative baskets, coasters, table-mats and more.</p>
+        
+        <p>All income from the shop is put straight back in to support the women of Bwindi through skilling and employing them, and through all the rest of Ride 4 a Woman projects, such as microfinancing local businesswomen, providing safe water, installing solar panels to houses without electricity, and many more.</p>
+        
+        <p>If something in the photos captures your eye please do send us an enquiry as we will happily work to order and ship our products to you in most places across the world thanks to our partnership with DHL. We can even customize the items with your favorite fabrics!</p>
+    </section>
+
+    <div style="width: 100%; height: 150px; background: linear-gradient(135deg, #7fb800, #4a7022); margin: 40px 0;"></div>
+
+    <section class="enquire-section">
+        <a href="#contact" class="enquire-btn">ENQUIRE ABOUT OUR PRODUCTS</a>
+    </section>
+
+    <section class="products-section">
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Zipper Bag
+                    <small>Add image: imgs/zipper-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Zipper Bag</h3>
+                    <p>25$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Flat Mats
+                    <small>Add image: imgs/flat-mats.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Flat Mats</h3>
+                    <p>8-40$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Duffle Bag
+                    <small>Add image: imgs/duffle-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Duffle Bag</h3>
+                    <p>40-50-60$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Open Basket
+                    <small>Add image: imgs/open-basket.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Open Basket</h3>
+                    <p>5 to 100$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Tray Basket
+                    <small>Add image: imgs/tray-basket.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Tray Basket</h3>
+                    <p>10 to 80$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Ladies Bag
+                    <small>Add image: imgs/ladies-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Ladies Bag</h3>
+                    <p>30$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Weaven Coasters
+                    <small>Add image: imgs/weaven-coasters.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Weaven Coasters</h3>
+                    <p>10 to 30$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Table Mat
+                    <small>Add image: imgs/table-mat.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Table Mat</h3>
+                    <p>8-10$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Table Runner
+                    <small>Add image: imgs/table-runner.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Table Runner</h3>
+                    <p>15 to 60$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Flat Tray
+                    <small>Add image: imgs/flat-tray.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Flat Tray</h3>
+                    <p>15-50$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Wine Bottle Covers
+                    <small>Add image: imgs/wine-bottle-covers.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Wine Bottle Covers</h3>
+                    <p>20$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Hot Pot Holder
+                    <small>Add image: imgs/hot-pot-holder.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Hot Pot Holder</h3>
+                    <p>15-20$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Napkins
+                    <small>Add image: imgs/napkins.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Napkins</h3>
+                    <p>3$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Yoga Mat Bag
+                    <small>Add image: imgs/yoga-mat-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Yoga Mat Bag</h3>
+                    <p>35-40$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Beach Bag
+                    <small>Add image: imgs/beach-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Beach Bag</h3>
+                    <p>40$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Shopping Bag
+                    <small>Add image: imgs/shopping-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Shopping Bag</h3>
+                    <p>15-20$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    String Bag
+                    <small>Add image: imgs/string-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>String Bag</h3>
+                    <p>15-17$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Oven Gloves
+                    <small>Add image: imgs/oven-gloves.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Oven Gloves</h3>
+                    <p>15-20$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Apron
+                    <small>Add image: imgs/apron.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Apron</h3>
+                    <p>15-20-25$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Jar Covers
+                    <small>Add image: imgs/jar-covers.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Jar Covers</h3>
+                    <p>8 to 25$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Make Up Bag
+                    <small>Add image: imgs/make-up-bag.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Make Up Bag</h3>
+                    <p>20$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Bottle Top Mat
+                    <small>Add image: imgs/bottle-top-mat.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Bottle Top Mat</h3>
+                    <p>5 to 30$</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Fabrics
+                    <small>Add image: imgs/fabrics1.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Fabrics</h3>
+                    <p>10$/meter</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-placeholder">
+                    Fabrics
+                    <small>Add image: imgs/fabrics2.jpg</small>
+                </div>
+                <div class="product-info">
+                    <h3>Fabrics</h3>
+                    <p>10$/meter</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="enquire-section">
+        <p style="font-size: 14px; color: #666; font-style: italic;">
+            *Please, be aware that the prices of the items do not include the shipment costs. The shipments from Uganda to any destination are done through DHL, and the costs vary depending on the weight of the articles and DHL rates. Final cost to be notified after each enquire.
+        </p>
+        <a href="#contact" class="enquire-btn">ENQUIRE ABOUT OUR PRODUCTS</a>
+    </section>
+
+    <section id="contact" class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <p style="font-size: 13px; margin-bottom: 20px;">We respect your privacy</p>
+        
+        <form class="newsletter-form">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">SIGN UP</button>
+        </form>
+
+        <div class="social-icons">
+            <a href="#">✉</a>
+            <a href="#">📷</a>
+            <a href="#">𝕏</a>
+            <a href="#">in</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#">Privacy</a></p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing!');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

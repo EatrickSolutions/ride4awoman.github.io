@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant - Ride 4 a Woman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d5016;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #2d5016;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-item {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .nav-item > a {
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            transition: color 0.3s;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        nav > a {
+            flex-shrink: 0;
+        }
+
+        nav a:hover {
+            color: #7fb800;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #7fb800;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2c3e50;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #7fb800;
+            padding-left: 25px;
+        }
+
+        .donate-btn {
+            border: 2px solid #7fb800;
+            padding: 10px 24px;
+            border-radius: 30px;
+            background: #7fb800;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+            letter-spacing: 0.8px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .donate-btn:hover {
+            background-color: #6a9d00;
+            border-color: #6a9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+        }
+
+        /* Hero Section with Carousel */
+        .hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #fff;
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #2d5016;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        .about-section.visible h2::after {
+            width: 120px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+
+        .about-section.visible .about-text p {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-text p:nth-child(1) { transition-delay: 0.1s; }
+        .about-text p:nth-child(2) { transition-delay: 0.2s; }
+        .about-text p:nth-child(3) { transition-delay: 0.3s; }
+        .about-text p:nth-child(4) { transition-delay: 0.4s; }
+
+        .about-image {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+
+        .about-section.visible .about-image {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Menu Highlights */
+        .menu-section {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .menu-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2d5016;
+            text-align: center;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .menu-section.visible .menu-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-section.visible .menu-item:nth-child(1) { transition-delay: 0.1s; }
+        .menu-section.visible .menu-item:nth-child(2) { transition-delay: 0.2s; }
+        .menu-section.visible .menu-item:nth-child(3) { transition-delay: 0.3s; }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .menu-item h3 {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 15px;
+        }
+
+        .menu-item p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .menu-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 60px;
+            background: white;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .gallery-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2d5016;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+
+        .gallery-section.visible .gallery-item {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-section.visible .gallery-item:nth-child(1) { transition-delay: 0.1s; }
+        .gallery-section.visible .gallery-item:nth-child(2) { transition-delay: 0.2s; }
+        .gallery-section.visible .gallery-item:nth-child(3) { transition-delay: 0.3s; }
+        .gallery-section.visible .gallery-item:nth-child(4) { transition-delay: 0.4s; }
+        .gallery-section.visible .gallery-item:nth-child(5) { transition-delay: 0.5s; }
+        .gallery-section.visible .gallery-item:nth-child(6) { transition-delay: 0.6s; }
+        .gallery-section.visible .gallery-item:nth-child(7) { transition-delay: 0.7s; }
+        .gallery-section.visible .gallery-item:nth-child(8) { transition-delay: 0.8s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        /* Reservation Section */
+        .reservation-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reservation-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reservation-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .reservation-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reservation-btn {
+            padding: 18px 60px;
+            background: #ffeb3b;
+            color: #2d5016;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .reservation-btn:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 235, 59, 0.4);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h3 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .newsletter p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .newsletter-form input {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 400px;
+            max-width: 100%;
+            font-size: 15px;
+        }
+
+        .newsletter-form button {
+            padding: 18px 50px;
+            border: none;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 235, 59, 0.4);
+        }
+
+        .newsletter-privacy {
+            font-size: 14px;
+            color: #e0e0e0;
+            margin-top: 10px;
+        }
+
+        .newsletter-privacy a {
+            color: #ffeb3b;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .social-qr-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #2d5016;
+            font-weight: 600;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a2f0d;
+            padding: 30px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #b8c77d;
+        }
+
+        .footer a {
+            color: #b8c77d;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                align-items: flex-start;
+                gap: 20px;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding: 5px 0 5px 15px;
+                margin-top: 5px;
+                background-color: #f9f9f9;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+
+            .donate-btn {
+                width: 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            .about-section,
+            .menu-section,
+            .gallery-section,
+            .reservation-section,
+            .newsletter {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232d5016'/%3E%3Cpath d='M30 50 Q50 30 70 50 Q50 70 30 50' fill='%237fb800'/%3E%3Ccircle cx='50' cy='45' r='8' fill='white'/%3E%3C/svg%3E" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navMenu">
+            <div class="nav-item">
+                <a>ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="aboutus.html">OUR STORY</a>
+                    <a href="ourteam.html">MEET OUR TEAM</a>
+                    <a href="inspiringstoring.html">INSPIRING STORIES</a>
+                    <a href="sustainbility.html">SUSTAINABILITY</a>
+                    <a href="news.html">NEWSLETTERS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>PROJECTS</a>
+                <div class="dropdown-menu">
+                    <a href="employ.html">EMPLOYING WOMEN</a>
+                    <a href="microfinace.html">MICROFINANCE</a>
+                    <a href="#">CHILDREN SPONSORSHIP</a>
+                    <a href="#">SAFE WATER</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>ACTIVITIES</a>
+                <div class="dropdown-menu">
+                    <a href="#">TRADITIONAL COOKING</a>
+                    <a href="#">BASKET WEAVING</a>
+                    <a href="#">PEDAL SEWING</a>
+                    <a href="#">BAKIGA DANCE</a>
+                    <a href="#">BIKING COMMUNITY TOUR</a>
+                    <a href="#">VISITING A WOMAN'S HOME</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>STAY WITH US</a>
+                <div class="dropdown-menu">
+                    <a href="#">ACCOMMODATION</a>
+                    <a href="restaurant.html">RESTAURANT</a>
+                    <a href="#">ENGAGI CAFE</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>THE SHOP</a>
+                <div class="dropdown-menu">
+                    <a href="#">OUR HANDMADE PRODUCTS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>COLLABORATE</a>
+                <div class="dropdown-menu">
+                    <a href="#">DONATE</a>
+                    <a href="#">VOLUNTEER</a>
+                </div>
+            </div>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Carousel -->
+    <section class="hero">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 600'%3E%3Crect fill='%234a7022' width='1600' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='white' text-anchor='middle' dominant-baseline='middle'%3ERestaurant Interior%3C/text%3E%3C/svg%3E" alt="Restaurant">
+                </div>
+                <div class="carousel-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 600'%3E%3Crect fill='%232d5016' width='1600' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='white' text-anchor='middle' dominant-baseline='middle'%3EFresh Local Food%3C/text%3E%3C/svg%3E" alt="Food">
+                </div>
+                <div class="carousel-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 600'%3E%3Crect fill='%237fb800' width='1600' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='white' text-anchor='middle' dominant-baseline='middle'%3EDining Experience%3C/text%3E%3C/svg%3E" alt="Dining">
+                </div>
+            </div>
+            <div class="carousel-overlay">
+                <div class="hero-content">
+                    <h1>Restaurant</h1>
+                    <p>Enjoy Fresh & Local Ugandan Cuisine</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <span class="carousel-dot active" data-slide="0"></span>
+                <span class="carousel-dot" data-slide="1"></span>
+                <span class="carousel-dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2>Enjoy our fresh and local food</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>We have a restaurant onsite where you can get local tea and coffee, and service all day.</p>
+                <p>We offer traditional local food cooked in charcoal kitchen so you can enjoy the real taste of the Ugandan cooking. There is also the possibility to eat continental food if you prefer so, or to adapt the meal to your needs (vegetarian, vegan, gluten free, allergens...).</p>
+                <p>We have a small bar offering wine, beer and a selection of spirits and, most importantly, a peaceful place to rest and enjoy the sounds of the river and birds of the forest.</p>
+                <p>Let us know in case you want to come and enjoy in our dining area making a reservation.</p>
+            </div>
+            <div class="about-image">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect fill='%234a7022' width='600' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='32' fill='white' text-anchor='middle' dominant-baseline='middle'%3ERestaurant View%3C/text%3E%3C/svg%3E" alt="Restaurant View">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section class="menu-section" id="menu">
+        <h2>Our Specialties</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-icon">🍲</div>
+                <h3>Traditional Ugandan</h3>
+                <p>Authentic local dishes cooked in traditional charcoal kitchens, bringing you the genuine flavors of Uganda.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">🥗</div>
+                <h3>Continental Cuisine</h3>
+                <p>International dishes prepared with fresh local ingredients, accommodating all dietary preferences.</p>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">☕</div>
+                <h3>Coffee & Beverages</h3>
+                <p>Fresh local tea and coffee served throughout the day, plus a selection of wines, beers, and spirits.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section" id="gallery">
+        <h2>Our Restaurant Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%234a7022' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EDining Area%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%232d5016' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EBreakfast Table%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%237fb800' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3ETable Setting%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%234a7022' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EOutdoor Seating%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%232d5016' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EWine Selection%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%237fb800' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3ELocal Dish%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%234a7022' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3ESink Area%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%232d5016' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EInterior View%3C/text%3E%3C/svg%3E" alt="Gallery">
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation CTA -->
+    <section class="reservation-section">
+        <h2>Ready to Experience Authentic Ugandan Cuisine?</h2>
+        <p>Join us for a memorable dining experience in the heart of nature. Whether you're craving traditional Ugandan dishes or continental favorites, we're here to serve you.</p>
+        <a href="#contact" class="reservation-btn">Reservation Enquiries</a>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="contact">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <p class="newsletter-privacy">We respect your <a href="#">privacy</a></p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Email Address">
+            <button>SIGN UP</button>
+        </div>
+        <div class="social-qr-container">
+            <div class="social-icons">
+                <a href="#" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+                <a href="#" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+            </div>
+            <div class="qr-section">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="3"/>
+                        <path d="M50 20 L50 80 M35 35 L50 50 L65 35" stroke="white" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+                <div class="qr-code">QR CODE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#">Privacy</a></p>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-section, .menu-section, .gallery-section, .reservation-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Mobile dropdown functionality
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

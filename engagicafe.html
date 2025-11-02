@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engagi Community Cafe - Ride 4 a Woman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d5016;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #2d5016;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #7fb800;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #7fb800;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #2c3e50;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #7fb800;
+            padding-left: 25px;
+        }
+
+        .donate-btn {
+            border: 2px solid #7fb800;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #7fb800;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .donate-btn:hover {
+            background-color: #6a9d00;
+            border-color: #6a9d00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7022" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            animation: slidePattern 20s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            animation: fadeInScale 1.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d5016;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7fb800, #ffeb3b);
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        .about-section.visible h2::after {
+            width: 150px;
+        }
+
+        .about-subtitle {
+            text-align: center;
+            font-size: 22px;
+            color: #7fb800;
+            margin-bottom: 50px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .about-section.visible .about-subtitle {
+            animation-delay: 0.3s;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #4a4a4a;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+            text-align: justify;
+        }
+
+        .about-section.visible .about-content p {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .about-section.visible .about-content p:nth-child(1) { transition-delay: 0.2s; }
+        .about-section.visible .about-content p:nth-child(2) { transition-delay: 0.4s; }
+        .about-section.visible .about-content p:nth-child(3) { transition-delay: 0.6s; }
+        .about-section.visible .about-content p:nth-child(4) { transition-delay: 0.8s; }
+        .about-section.visible .about-content p:nth-child(5) { transition-delay: 1s; }
+
+        /* Offerings Section */
+        .offerings-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .offerings-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .offerings-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2d5016;
+            text-align: center;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .offering-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .offerings-section.visible .offering-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .offerings-section.visible .offering-card:nth-child(1) { transition-delay: 0.1s; }
+        .offerings-section.visible .offering-card:nth-child(2) { transition-delay: 0.3s; }
+        .offerings-section.visible .offering-card:nth-child(3) { transition-delay: 0.5s; }
+
+        .offering-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(127, 184, 0, 0.2);
+        }
+
+        .offering-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .offering-card h3 {
+            font-size: 24px;
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .offering-card p {
+            font-size: 16px;
+            color: #4a4a4a;
+            line-height: 1.8;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 60px;
+            background: white;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .gallery-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #2d5016;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+            height: 350px;
+        }
+
+        .gallery-section.visible .gallery-item {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-section.visible .gallery-item:nth-child(1) { transition-delay: 0.1s; }
+        .gallery-section.visible .gallery-item:nth-child(2) { transition-delay: 0.2s; }
+        .gallery-section.visible .gallery-item:nth-child(3) { transition-delay: 0.3s; }
+        .gallery-section.visible .gallery-item:nth-child(4) { transition-delay: 0.4s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7fb800, #4a7022);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .impact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .impact-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .impact-text {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            font-size: 20px;
+            line-height: 1.9;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .impact-section.visible .impact-text {
+            animation-delay: 0.3s;
+        }
+
+        .impact-highlight {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid #ffeb3b;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 22px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .impact-section.visible .impact-highlight {
+            animation-delay: 0.6s;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #4a7022, #2d5016);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter h3 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter > p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-privacy {
+            font-size: 13px;
+            color: #e0e0e0;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-privacy a {
+            color: #ffeb3b;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form input {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 400px;
+            max-width: 100%;
+            font-size: 15px;
+            background: white;
+        }
+
+        .newsletter-form button {
+            padding: 18px 50px;
+            border: none;
+            background-color: #ffeb3b;
+            color: #2d5016;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 235, 59, 0.4);
+        }
+
+        .social-qr {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+        }
+
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #2d5016;
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1a2f0d;
+            padding: 30px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: #b8c77d;
+        }
+
+        .footer a {
+            color: #b8c77d;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: white;
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                align-items: flex-start;
+                gap: 20px;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                padding: 5px 0 5px 15px;
+                margin-top: 5px;
+                background-color: #f9f9f9;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: block;
+            }
+
+            .donate-btn {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .about-section,
+            .offerings-section,
+            .gallery-section,
+            .impact-section,
+            .newsletter {
+                padding: 60px 20px;
+            }
+
+            .about-section h2,
+            .offerings-section h2,
+            .gallery-section h2,
+            .impact-section h2 {
+                font-size: 36px;
+            }
+
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            .social-qr {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232d5016'/%3E%3Ctext x='50' y='60' font-size='40' text-anchor='middle' fill='white' font-weight='bold'%3ER4W%3C/text%3E%3C/svg%3E" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navMenu">
+            <div class="nav-item">
+                <a>ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="aboutus.html">OUR STORY</a>
+                    <a href="ourteam.html">MEET OUR TEAM</a>
+                    <a href="inspiringstoring.html">INSPIRING STORIES</a>
+                    <a href="sustainbility.html">SUSTAINABILITY</a>
+                    <a href="news.html">NEWSLETTERS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#projects">PROJECTS</a>
+                <div class="dropdown-menu">
+                    <a href="employ.html">EMPLOYING WOMEN</a>
+                    <a href="microfinace.html">MICROFINANCE</a>
+                    <a href="#our-story">CHILDREN SPONSORSHIP</a>
+                    <a href="#our-story">SAFE WATER</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#activities">ACTIVITIES</a>
+                <div class="dropdown-menu">
+                    <a href="#our-story">TRADITIONAL COOKING</a>
+                    <a href="#meet-team">BASKET WEAVING</a>
+                    <a href="#our-story">PEDAL SEWING</a>
+                    <a href="#our-story">BAKIGA DANCE</a>
+                    <a href="#our-story">BIKING COMMUNITY TOUR</a>
+                    <a href="#our-story">VISITING A WOMAN'S HOME</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>STAY WITH US</a>
+                <div class="dropdown-menu">
+                    <a href="#our-story">ACCOMMODATION</a>
+                    <a href="#meet-team">RESTAURANT</a>
+                    <a href="engagicafe.html">ENGAGI CAFE</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#shop">THE SHOP</a>
+                <div class="dropdown-menu">
+                    <a href="#our-story">OUR HANDMADE PRODUCTS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a>COLLABORATE</a>
+                <div class="dropdown-menu">
+                    <a href="#Donate">DONATE</a>
+                    <a href="#Volunteer">VOLUNTEER</a>
+                </div>
+            </div>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Engagi Community Cafe</h1>
+            <p class="hero-subtitle">Relax with local tea and coffee and beautiful views</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>Welcome to Engagi Cafe</h2>
+        <p class="about-subtitle">Where community, nature, and sustainability meet</p>
+        <div class="about-content">
+            <p>The Engagi Cafe is a cafe managed by Ride 4 a Woman, located at the starting point of all gorilla trekking expeditions, in Bwindi Impenetrable Forest.</p>
+            
+            <p>We offer local tea and coffee, local food (rolex, chapati, samosas, katogo…) for breakfast and lunch, everything at a local price enjoyable by the members of the local community and tourists after gorilla trekking.</p>
+            
+            <p>The cafe is decorated with Ride 4 a Woman handmade items and offers amazing views of the forest through its beautiful balcony. You can sit, relax and enjoy the songs of birds, see playful monkeys jumping from tree to tree and admire the astonishing trees of the forest.</p>
+            
+            <p>Come after the gorilla trekking, the bird watching activity or whenever you have free time.</p>
+            
+            <p>By staying at the Engagi Cafe you are giving back to a whole community, helping to drive the local economy and supporting the progress of women and their families in Uganda.</p>
+        </div>
+    </section>
+
+    <!-- Offerings Section -->
+    <section id="offerings" class="offerings-section">
+        <h2>What We Offer</h2>
+        <div class="offerings-grid">
+            <div class="offering-card">
+                <div class="offering-icon">☕</div>
+                <h3>Local Tea & Coffee</h3>
+                <p>Freshly brewed local tea and coffee, prepared with traditional methods and served with warmth and hospitality.</p>
+            </div>
+            <div class="offering-card">
+                <div class="offering-icon">🍽️</div>
+                <h3>Authentic Local Cuisine</h3>
+                <p>Enjoy delicious rolex, chapati, samosas, katogo and more - all made fresh and priced affordably for everyone.</p>
+            </div>
+            <div class="offering-card">
+                <div class="offering-icon">🌳</div>
+                <h3>Breathtaking Forest Views</h3>
+                <p>Relax on our beautiful balcony overlooking Bwindi Impenetrable Forest, watch monkeys play and listen to bird songs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <h2>Experience Engagi Cafe</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Cafe Interior & Seating</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Local Cuisine</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Forest Views</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder">Handmade Decorations</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <h2>Your Visit Makes a Difference</h2>
+        <p class="impact-text">
+            Every meal, every cup of coffee, every moment you spend at Engagi Cafe directly supports the women of Ride 4 a Woman and their families. We reinvest all proceeds into community development, education, and women's empowerment programs.
+        </p>
+        <div class="impact-highlight">
+            "By choosing Engagi Cafe, you're not just enjoying a meal - you're investing in the future of an entire community and helping women achieve economic independence."
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="contact" class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <p class="newsletter-privacy">We respect your <a href="#privacy">privacy</a></p>
+        
+        <form class="newsletter-form">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">SIGN UP</button>
+        </form>
+
+        <div class="social-qr">
+            <div class="social-icons">
+                <a href="#" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="#" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="qr-container">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232d5016'/%3E%3Ctext x='50' y='60' font-size='40' text-anchor='middle' fill='white' font-weight='bold'%3ER4W%3C/text%3E%3C/svg%3E" alt="Ride 4 a Woman Logo" style="width: 80px; height: 80px; border-radius: 50%;">
+                <div class="qr-code">QR CODE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#privacy">Privacy</a></p>
+    </footer>
+
+    <script>
+        // Menu toggle for mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Dropdown toggle for mobile
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.about-section, .offerings-section, .gallery-section, .impact-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
