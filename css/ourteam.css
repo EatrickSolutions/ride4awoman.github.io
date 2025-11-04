@@ -49,12 +49,6 @@ header {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    animation: rotate 20s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 /* Hamburger Menu */
@@ -532,21 +526,22 @@ header nav .nav-item {
 /* Newsletter */
 .newsletter {
     padding: 80px 60px;
-    background: linear-gradient(135deg, #E8F4D0 0%, #F0F8E0 100%);
+    background: linear-gradient(135deg, #2d5016 0%, #4a7022 100%);
     text-align: center;
+    color: white;
 }
 
 .newsletter h3 {
     font-size: 42px;
     margin-bottom: 15px;
     font-weight: 700;
-    color: #2d5016;
+    color: white;
 }
 
 .newsletter p {
     font-size: 18px;
     margin-bottom: 40px;
-    color: #4a4a4a;
+    color: #e0e0e0;
 }
 
 .newsletter-form {
@@ -575,8 +570,8 @@ header nav .nav-item {
 .newsletter-form button {
     padding: 18px 50px;
     border: none;
-    background-color: #7fb800;
-    color: white;
+    background-color: #ffeb3b;
+    color: #2d5016;
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
@@ -587,15 +582,72 @@ header nav .nav-item {
 }
 
 .newsletter-form button:hover {
-    background-color: #6a9d00;
+    background-color: #ffd700;
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(127, 184, 0, 0.4);
+    box-shadow: 0 5px 20px rgba(255, 235, 59, 0.4);
+}
+
+/* Social Links & QR Code Container */
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 50px 0 30px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #7fb800;
+    transform: translateY(-3px);
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* QR Code Section */
+.qr-code-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0;
+}
+
+.footer-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.qr-code {
+    width: 110px;
+    height: 110px;
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 /* Footer */
 .footer {
     background-color: #1a2f0d;
-    padding: 40px 60px;
+    padding: 30px 60px;
     text-align: center;
     font-size: 14px;
     color: #b0b0b0;
@@ -797,6 +849,30 @@ header nav .nav-item {
 
     .newsletter h3 {
         font-size: 24px;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+
+    .social-links a {
+        width: 45px;
+        height: 45px;
+    }
+
+    .qr-code-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .qr-code {
+        width: 100px;
+        height: 100px;
     }
 
     .staff-photos {
