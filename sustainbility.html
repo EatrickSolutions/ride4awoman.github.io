@@ -4,421 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sustainability - Ride 4 a Woman</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #2c3e50;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        header {
-            background-color: #fff;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-weight: bold;
-            font-size: 20px;
-            color: #2d5016;
-        }
-
-        nav {
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #7fb800;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), linear-gradient(135deg, #2d5016, #4a7022);
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-            animation: fadeInDown 1s ease;
-        }
-
-        .intro-section {
-            padding: 80px 60px;
-            background: linear-gradient(135deg, #F0F8E0 0%, #E8F4D0 100%);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .intro-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .intro-content h2 {
-            font-size: 42px;
-            font-weight: 800;
-            color: #7fb800;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .intro-content p {
-            font-size: 18px;
-            line-height: 1.9;
-            color: #4a4a4a;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .sdg-section {
-            padding: 80px 60px;
-            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 48px;
-            font-weight: 800;
-            color: #2d5016;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #7fb800, #ffeb3b);
-            border-radius: 2px;
-        }
-
-        .sdg-category {
-            margin-bottom: 60px;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            margin-bottom: 40px;
-        }
-
-        .category-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #2d5016;
-            min-width: 250px;
-            flex-shrink: 0;
-        }
-
-        .category-title .highlight {
-            display: block;
-            font-size: 36px;
-            color: #7fb800;
-            line-height: 1.2;
-        }
-
-        .category-title .subtitle {
-            font-size: 20px;
-            font-weight: 600;
-            color: #666;
-        }
-
-        .sdg-grid {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 25px;
-            flex: 1;
-        }
-
-        .sdg-icon {
-            background: white;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-            transition: all 0.3s;
-            cursor: pointer;
-            overflow: hidden;
-            width: 160px;
-        }
-
-        .sdg-icon:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(127, 184, 0, 0.3);
-        }
-
-        .sdg-number {
-            width: 100%;
-            height: 160px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            padding: 20px 15px;
-        }
-
-        .sdg-number .number {
-            font-size: 72px;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .sdg-number .title {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.3;
-            text-align: center;
-        }
-
-        .sdg-details {
-            background: linear-gradient(135deg, #F9F3ED 0%, #fff 100%);
-            padding: 60px;
-            border-radius: 20px;
-            margin-bottom: 60px;
-            border-left: 8px solid #7fb800;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .sdg-details h3 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #7fb800;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .sdg-details em {
-            font-size: 16px;
-            color: #7fb800;
-            font-weight: 600;
-            display: block;
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(127, 184, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .sdg-details p {
-            font-size: 17px;
-            line-height: 1.9;
-            color: #4a4a4a;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .related-projects {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .related-projects a {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #7fb800;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .related-projects a:hover {
-            background: #6a9d00;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(127, 184, 0, 0.3);
-        }
-
-        .sources-section {
-            background: linear-gradient(135deg, #e8dcc8 0%, #f5f0e8 100%);
-            padding: 60px;
-            border-radius: 15px;
-            margin-top: 60px;
-        }
-
-        .sources-section h3 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #2d5016;
-            margin-bottom: 20px;
-        }
-
-        .sources-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sources-section li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            font-size: 16px;
-            color: #4a4a4a;
-        }
-
-        .sources-section li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #7fb800;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .sources-section a {
-            color: #7fb800;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .sources-section a:hover {
-            text-decoration: underline;
-        }
-
-        .update-info {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(127, 184, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-            font-size: 15px;
-            color: #4a4a4a;
-            font-style: italic;
-        }
-
-        footer {
-            background: linear-gradient(135deg, #2d5016, #4a7022);
-            padding: 60px;
-            color: white;
-            text-align: center;
-        }
-
-        footer a {
-            color: #ffeb3b;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 15px 30px; }
-            .hero { height: 300px; }
-            .hero h1 { font-size: 42px; }
-            .intro-section, .sdg-section, .sdg-details, .sources-section { padding: 50px 30px; }
-            .intro-content h2, .section-header h2 { font-size: 32px; }
-            .sdg-details h3 { font-size: 28px; flex-direction: column; }
-            .category-header { flex-direction: column; gap: 30px; }
-            .category-title { min-width: auto; text-align: center; }
-            .sdg-grid { justify-content: center; }
-        }
-
-        @media (max-width: 480px) {
-            header { padding: 12px 20px; }
-            nav { flex-wrap: wrap; gap: 10px; }
-            .hero { height: 250px; }
-            .hero h1 { font-size: 28px; padding: 0 20px; }
-            .intro-content h2 { font-size: 24px; }
-            .category-title .highlight { font-size: 28px; }
-            .category-title .subtitle { font-size: 16px; }
-            .sdg-details h3 { font-size: 22px; }
-            .sdg-icon { width: 130px; }
-            .sdg-number { height: 130px; }
-            .sdg-number .number { font-size: 56px; }
-            .sdg-number .title { font-size: 10px; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/sus.css">
 </head>
 <body>
     <header>
-        <div class="logo">🚴 Ride 4 a Woman</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#sustainability">Sustainability</a>
-            <a href="#contact">Contact</a>
+        <div class="logo">
+            <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo">
+            <span>RIDE 4 A WOMAN</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="navMenu">
+            <div class="nav-item">
+                <a href="#aboutus">ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="aboutus.html">OUR STORY</a>
+                    <a href="ourteam.html">MEET OUR TEAM</a>
+                    <a href="inspiringstoring.html">INSPIRING STORIES</a>
+                    <a href="sustainbility.html">SUSTAINABILITY</a>
+                    <a href="news.html">NEWSLETTERS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#projects">PROJECTS</a>
+                <div class="dropdown-menu">
+                    <a href="employ.html">EMPLOYING WOMEN</a>
+                    <a href="microfinace.html">MICROFINANCE</a>
+                    <a href="childrensponsorship.html">CHILDREN SPONSORSHIP</a>
+                    <a href="safewater.html">SAFE WATER</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#activities">ACTIVITIES</a>
+                <div class="dropdown-menu">
+                    <a href="cooking.html">TRADITIONAL COOKING</a>
+                    <a href="basket.html">BASKET WEAVING</a>
+                    <a href="pedalsewing.html">PEDAL SEWING</a>
+                    <a href="Bakiga.html">BAKIGA DANCE</a>
+                    <a href="bike.html">BIKING COMMUNITY TOUR</a>
+                    <a href="visting.html">VISITING A WOMAN'S HOME</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#stay">STAY WITH US</a>
+                <div class="dropdown-menu">
+                    <a href="accommodation.html">ACCOMMODATION</a>
+                    <a href="restaurant.html">RESTAURANT</a>
+                    <a href="engagicafe.html">ENGAGI CAFE</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#shop">THE SHOP</a>
+                <div class="dropdown-menu">
+                    <a href="shop.html">OUR HANDMADE PRODUCTS</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#collaborate">COLLABORATE</a>
+                <div class="dropdown-menu">
+                    <a href="donate.html">DONATE</a>
+                    <a href="volunteer.html">VOLUNTEER</a>
+                </div>
+            </div>
+            <a href="#contact">CONTACT</a>
+            <button class="donate-btn">DONATE</button>
         </nav>
     </header>
 
@@ -534,37 +186,36 @@
             </div>
         </div>
 
-
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #E5243B, #C5192D); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">1</div>
                 </div>
                 No Poverty
             </h3>
-            <em>“End poverty in all its forms everywhere”</em>
-            <p>Almost half of the Ugandan population lives on less than $2,15 a day (being $2,15/day the International Poverty Line, according to the World Bank). In Ride 4 a Woman we fight against poverty by empowering women from our community who are struggling with poverty, HIV and domestic violence, are single mothers, widows or women who never went to school. To do so, the organization <a href="#"> employs 60 women</a> with the mentioned profiles who come to work every day at our center. These women were taught to pedal sew and weave, and they are the ones who make the handmade products that are sold in our craft shop.</p>
-            <P>Ride 4 a Woman has 300 members and supports them, their families and many more people from the community to combat poverty through all our projects:</P>
+            <em>"End poverty in all its forms everywhere"</em>
+            <p>Almost half of the Ugandan population lives on less than $2,15 a day (being $2,15/day the International Poverty Line, according to the World Bank). In Ride 4 a Woman we fight against poverty by empowering women from our community who are struggling with poverty, HIV and domestic violence, are single mothers, widows or women who never went to school. To do so, the organization employs 60 women with the mentioned profiles who come to work every day at our center. These women were taught to pedal sew and weave, and they are the ones who make the handmade products that are sold in our craft shop.</p>
+            <p>Ride 4 a Woman has 300 members and supports them, their families and many more people from the community to combat poverty through all our projects.</p>
         </div>
 
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #C5192D, #A21942); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">4</div>
                 </div>
-                QUALITY EDUCATION
+                Quality Education
             </h3>
             <em>"Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all"</em>
-            <p>In Uganda and in our community, there are many children who don’t go to school (usually because of economic reasons) and the percentages of people who cannot read and write are still very high. In Ride 4 a Woman, we work to put as many children as possible into schools, and we do it through our children sponsorship program. Nowadays, more than 270 children, from families who cannot afford paying school fees, go to school thanks to Ride 4 a Woman. We make sure to pay school fees on time and to provide uniforms and school supplies to the kids, so that they can focus all their attention on what really matters to them: studying and learning.</p>
-            <p>But Ride 4 a Woman doesn’t stop here. Our dream is to build a primary school in our community, in an area where the need of it is very high. See our future primary school project to know more about it.</p>
+            <p>In Uganda and in our community, there are many children who don't go to school (usually because of economic reasons) and the percentages of people who cannot read and write are still very high. In Ride 4 a Woman, we work to put as many children as possible into schools, and we do it through our children sponsorship program. Nowadays, more than 270 children, from families who cannot afford paying school fees, go to school thanks to Ride 4 a Woman. We make sure to pay school fees on time and to provide uniforms and school supplies to the kids, so that they can focus all their attention on what really matters to them: studying and learning.</p>
+            <p>But Ride 4 a Woman doesn't stop here. Our dream is to build a primary school in our community, in an area where the need of it is very high.</p>
         </div>
 
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FF3A21, #E01F26); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">5</div>
                 </div>
-                GENDER EQUALITY
+                Gender Equality
             </h3>
             <em>"Achieve gender equality and empower all women and girls"</em>
             <p>In our community and generally in all Uganda, women depend on their husbands in many social and economic decisions, sometimes not even being able to work outside their homes. Empowering women socially and economically is our daily work at Ride 4 a Woman, and it is the best way we know to achieve gender equality in our community. In our center, all the women find a space of safety, where they can speak aloud and get support among the others. Moreover, apart from providing employment and a safety space for the women, we have a specific program to fight domestic violence; we educate on family planning and reproductive health and rights; we skill women in sewing, weaving, agriculture practices and basic financials; and we provide spiritual guidance.</p>
@@ -572,79 +223,76 @@
 
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #26BDE2, #1F97D4); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">6</div>
                 </div>
-                CLEAN WATER AND SANITATION
+                Clean Water and Sanitation
             </h3>
-            <em>"Take urgent action to combat climate change and its impacts"</em>
-            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
+            <em>"Ensure availability and sustainable management of water and sanitation for all"</em>
+            <p>Access to clean water is a basic human right, yet many in our community still struggle with this daily necessity. Ride 4 a Woman provides safe drinking water to anyone from the community through our water project. We have installed water collection and purification systems that serve hundreds of families. This initiative has dramatically reduced waterborne diseases and freed up time, especially for women and children, who traditionally spend hours each day collecting water from distant sources.</p>
         </div>
 
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #A21942, #8F1838); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">8</div>
                 </div>
-                DECENT WORK AND ECONOMIC GROWTH
+                Decent Work and Economic Growth
             </h3>
-            <em>"Take urgent action to combat climate change and its impacts"</em>
-            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
+            <em>"Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all"</em>
+            <p>Economic empowerment is at the heart of what we do. By employing 60 women from vulnerable backgrounds, we provide not just jobs, but dignified work that respects their skills and contributions. Through our microfinance program, we support over 300 women to start and grow their own businesses. We provide training in valuable skills like sewing, weaving, and agriculture, enabling women to generate sustainable income for their families. Our approach ensures that economic growth reaches those who need it most.</p>
         </div>
 
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #DDA83A, #C69214); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">2</div>
                 </div>
-                ZERO HUNGER
+                Zero Hunger
             </h3>
-            <em>"Take urgent action to combat climate change and its impacts"</em>
-            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
-        </div>
-
- <div class="sdg-details animate-on-scroll">
-            <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
-                    <div class="number" style="font-size: 48px; margin: 0;">3</div>
-                </div>
-                GOOD HEALTH AND WELL-BEING
-            </h3>
-            <em>"Take urgent action to combat climate change and its impacts"</em>
-            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
+            <em>"End hunger, achieve food security and improved nutrition and promote sustainable agriculture"</em>
+            <p>Food security is a major challenge in our community. Through our agriculture program, we provide seeds, tools, and training to help families grow their own food. We teach sustainable farming practices that improve crop yields while protecting the environment. Our goats program provides families with animals that can be raised for milk and meat, creating a sustainable source of nutrition and income. Additionally, we maintain gardens at our center that provide fresh vegetables for our restaurant and demonstrate effective farming techniques.</p>
         </div>
 
         <div class="sdg-details animate-on-scroll">
             <h3>
-                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
-                    <div class="number" style="font-size: 48px; margin: 0;">7</div>
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #4C9F38, #3F7E2D); font-size: 36px;">
+                    <div class="number" style="font-size: 48px; margin: 0;">3</div>
                 </div>
-                AFFORDABLE AND CLEAN ENERGY
+                Good Health and Well-Being
             </h3>
-            <em>"Take urgent action to combat climate change and its impacts"</em>
-            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
+            <em>"Ensure healthy lives and promote well-being for all at all ages"</em>
+            <p>Health is wealth, and we work to ensure our community members have access to basic healthcare and health education. We provide support for women living with HIV, ensuring they have access to medication and counseling. Our center serves as a safe space where women can discuss reproductive health, family planning, and general wellness. We also address mental health by creating a supportive community where women can share their challenges and find emotional support. Through our various programs, we help reduce stress and improve overall quality of life.</p>
         </div>
 
+        <div class="sdg-details animate-on-scroll">
+            <h3>
+                <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FCC30B, #E5B800); font-size: 36px;">
+                    <div class="number" style="font-size: 48px; margin: 0;">7</div>
+                </div>
+                Affordable and Clean Energy
+            </h3>
+            <em>"Ensure access to affordable, reliable, sustainable and modern energy for all"</em>
+            <p>Energy poverty affects many households in our community, forcing families to rely on dangerous and polluting kerosene lamps. Through our Light a Home project, we provide and install solar panels in houses without electricity. This brings clean, renewable energy to families, allowing children to study after dark, reducing health risks from smoke inhalation, and cutting household expenses. Our center also operates on solar power, demonstrating the viability and benefits of renewable energy.</p>
+        </div>
 
-        <!-- SDG 13: CLIMATE ACTION -->
         <div class="sdg-details animate-on-scroll">
             <h3>
                 <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #3F7E44, #2C5F2D); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">13</div>
                 </div>
-                CLIMATE ACTION
+                Climate Action
             </h3>
             <em>"Take urgent action to combat climate change and its impacts"</em>
-            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reducing the greenhouse gases emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care about our natural environment, planting trees, and many more.</p>
+            <p>The world is immersed in a climate crisis created by human activity which is causing increasingly frequent and severe natural disasters that make us very vulnerable. The need to reduce greenhouse gas emissions around the globe is a matter of survival. In Ride 4 a Woman we do our part by using renewable and clean solar energy in our center, offering KM0 and ecological food from our gardens and farms in our restaurant and cafeteria, purchasing locally those products that can't be grown in our farms, bringing food waste and other types of waste to almost zero, reducing the use of plastic bags, taking care of our natural environment, planting trees, and many more.</p>
         </div>
 
-        <!-- SDG 15: LIFE ON LAND -->
         <div class="sdg-details animate-on-scroll">
             <h3>
                 <div class="sdg-number" style="width: 80px; height: 80px; background: linear-gradient(135deg, #56C02B, #3F9C1F); font-size: 36px;">
                     <div class="number" style="font-size: 48px; margin: 0;">15</div>
                 </div>
-                LIFE ON LAND
+                Life on Land
             </h3>
             <em>"Protect, restore and promote sustainable use of terrestrial ecosystems, sustainably manage forests, combat desertification, and halt and reverse land degradation and halt biodiversity loss"</em>
             <p>The world is currently facing one of the largest species extinctions ever and, as it happens with climate change, it is due to human activity. One of the main reasons for it is the reduction of forest areas and other natural spaces. The total forest area in Uganda has reduced from 16% to 11% in the last 25 years. In Ride 4 a Woman we believe that protecting the forests is crucial, so we work for the conservation of Bwindi Impenetrable Forest National Park, its mountain gorillas and other wildlife. We partner with Ugandan Wildlife Authority (UWA) and support the park headquarters, in Buhoma, by welcoming, entertaining and bringing local tea, coffee and other meals to the park visitors and employees. Moreover, every time we can, we spread the word about the importance of conservation for both the planet and the people.</p>
@@ -660,12 +308,79 @@
         </div>
     </section>
 
-    <footer>
-        <p>© 2025 Ride 4 a Woman. All rights reserved.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h3>Stay Connected</h3>
+        <p>Sign up with your email address to receive updates from Ride 4 a Woman</p>
+        <p style="font-size: 13px; margin-top: -15px;">We respect your <a href="#" style="text-decoration: underline;">privacy</a></p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit">SIGN UP</button>
+        </form>
+        <div class="social-qr">
+            <div class="social-icons">
+                <a href="#" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="#" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="#" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="qr-logo-container">
+                <img src="imgs/logo+large.webp" alt="Ride 4 a Woman Logo" class="footer-logo">
+                <div class="qr-code-box">
+                    <img src="imgs/QR+Code+R4W.webp" alt="QR Code" class="qr-code-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright © Ride 4 a Woman | <a href="#">Privacy</a></p>
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Dropdown menu for mobile
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+
+        // Scroll animation observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -677,4 +392,4 @@
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     </script>
 </body>
-</html> 
+</html>
